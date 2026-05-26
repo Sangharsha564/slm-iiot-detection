@@ -1,0 +1,60 @@
+# ── Python ────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# ── Jupyter ───────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ── macOS ─────────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverrideIcon
+._*
+
+# ── Large data files — tracked by DVC instead ────────────────────
+dataset/*.csv
+dataset/preprocessed/
+!dataset/*.dvc
+!dataset/.gitignore
+
+# ── Model weights — too large for git ────────────────────────────
+models/**/*.pt
+models/**/*.pth
+models/**/*.bin
+models/**/*.safetensors
+models/**/*.onnx
+models/**/*.pkl
+models/**/*.joblib
+
+# ── MLflow — local tracking only, not in git ─────────────────────
+mlruns/
+
+# ── Logs ──────────────────────────────────────────────────────────
+logs/
+*.log
+
+# ── Environment ───────────────────────────────────────────────────
+.env
+.env.*
+*.env
+
+# ── IDE ───────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Temporary / output files ──────────────────────────────────────
+*.tmp
+*.temp
+reports/figures/*.png
+reports/figures/*.pdf
