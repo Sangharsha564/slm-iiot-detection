@@ -58,3 +58,16 @@ logs/
 *.temp
 reports/figures/*.png
 reports/figures/*.pdf
+
+# ── Research PDFs — large binaries, stored on filesystem only ─────
+*.pdf
+"1. Slow-Rate Detection"/
+"2. LLM for IDS"/
+"3. Detect + Explain"/
+"4. Background"/
+"supervisor shared"/
+
+# ── Generated analysis output text files ──────────────────────────
+dataset/*output*.txt
+dataset/attack\ output.txt
+dataset/benign\ output.txt
