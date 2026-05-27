@@ -1,0 +1,6 @@
+outs:
+- md5: 88abb17623c468db632c4cc3b9bf8d80.dir
+  size: 4286985
+  nfiles: 6
+  hash: md5
+  path: encoder_slm
