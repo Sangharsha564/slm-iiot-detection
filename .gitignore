@@ -71,3 +71,4 @@ reports/figures/*.pdf
 dataset/*output*.txt
 dataset/attack\ output.txt
 dataset/benign\ output.txt
+mlflow.db
