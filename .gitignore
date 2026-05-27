@@ -56,8 +56,6 @@ logs/
 # ── Temporary / output files ──────────────────────────────────────
 *.tmp
 *.temp
-reports/figures/*.png
-reports/figures/*.pdf
 
 # ── Research PDFs — large binaries, stored on filesystem only ─────
 *.pdf
