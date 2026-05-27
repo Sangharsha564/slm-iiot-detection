@@ -1,0 +1,26 @@
+Encoder SLM (DistilBERT + LoRA) — Classification Report
+=======================================================
+
+Base model       : distilbert-base-uncased
+LoRA r / alpha   : 8 / 16
+Epochs           : 5  (best: 5)
+Trainable params : 890,118 (1.31%)
+
+Accuracy         : 0.9452
+F1 macro         : 0.8720
+F1 weighted      : 0.9453
+F1 Slowloris     : 0.5306
+Train time       : 831.2s
+
+              precision    recall  f1-score   support
+
+      benign       0.97      0.96      0.97      2736
+   slowloris       0.57      0.50      0.53        26
+   dos_other       0.94      0.94      0.94       643
+  ddos_other       0.97      0.94      0.96       634
+       recon       0.91      0.92      0.92      1201
+       other       0.90      0.94      0.92       766
+
+    accuracy                           0.95      6006
+   macro avg       0.88      0.87      0.87      6006
+weighted avg       0.95      0.95      0.95      6006

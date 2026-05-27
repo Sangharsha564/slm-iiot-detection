@@ -148,9 +148,11 @@ print(f"  Example: {train_texts[0][:120]}...")
 # ══════════════════════════════════════════════════════════════════════════
 print(f"\n[3/7] Computing class weights ...")
 with open(os.path.join(PREP_DIR, 'class_weights.pkl'), 'rb') as f:
-    weight_dict = pickle.load(f)
+    weight_dict_raw = pickle.load(f)
 
-# weight_dict is sklearn's dict {class_id: weight}
+# class_weights.pkl stores a nested dict — extract the class weights sub-dict
+weight_dict = weight_dict_raw['class_weights']
+
 class_weights_tensor = torch.tensor(
     [weight_dict[i] for i in range(N_CLASSES)],
     dtype=torch.float32
