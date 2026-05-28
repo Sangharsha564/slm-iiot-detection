@@ -81,8 +81,8 @@ LORA_R       = cfg['encoder_slm']['lora_r']            # 8
 LORA_ALPHA   = cfg['encoder_slm']['lora_alpha']        # 16
 
 # Training hyper-parameters (not in yaml — kept here for easy tuning)
-N_EPOCHS      = 5
-LEARNING_RATE = 2e-4
+N_EPOCHS      = 10
+LEARNING_RATE = 5e-5
 WARMUP_RATIO  = 0.1
 WEIGHT_DECAY  = 0.01
 VAL_FRAC      = 0.1        # 10% of training data for validation
@@ -257,7 +257,7 @@ best_val_f1  = 0.0
 best_epoch   = 0
 train_start  = time.time()
 
-with mlflow.start_run(run_name='encoder-slm-lora-run-01') as run:
+with mlflow.start_run(run_name='encoder-slm-lora-run-02-15ep') as run:
 
     # Log hyper-parameters
     mlflow.log_params({
