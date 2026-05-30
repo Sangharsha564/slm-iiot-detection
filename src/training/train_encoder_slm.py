@@ -1,16 +1,22 @@
 """
-Encoder SLM — Fine-tuning Script
-==================================
-Fine-tunes DistilBERT + LoRA as a 6-class network-flow classifier.
-Input: verbalized natural-language sentences (from Verbalizer).
+Encoder SLM — Fine-tuning Script v2
+=====================================
+Fine-tunes DistilBERT + LoRA as an 8-class network-flow classifier.
+Input: key-value verbalized text with Boolean domain flags (Verbalizer v2).
 Loss : class-weighted CrossEntropyLoss — no SMOTE (original class dist).
 Logs everything to MLflow.  Saves model, report, plots.
+
+Changes from v1:
+  - 8 classes (MitM and malware separated)
+  - Key-value input format with Boolean domain flags
+  - 34 selected features (XGBoost + MI combined selection)
+  - Log1p + RobustScaler preprocessing
 
 Run from project root:
     python src/training/train_encoder_slm.py
 
 Outputs (in models/encoder_slm/):
-    best_model/          ← HuggingFace model dir (LoRA weights merged)
+    best_model/          ← HuggingFace model dir (LoRA weights)
     classification_report.txt
     training_curves.png
     confusion_matrix.png
@@ -81,8 +87,8 @@ LORA_R       = cfg['encoder_slm']['lora_r']            # 8
 LORA_ALPHA   = cfg['encoder_slm']['lora_alpha']        # 16
 
 # Training hyper-parameters (not in yaml — kept here for easy tuning)
-N_EPOCHS      = 10
-LEARNING_RATE = 5e-5
+N_EPOCHS      = 5           # start with 5 — extend if still improving
+LEARNING_RATE = 2e-4        # run-01 LR was better than 5e-5
 WARMUP_RATIO  = 0.1
 WEIGHT_DECAY  = 0.01
 VAL_FRAC      = 0.1        # 10% of training data for validation
@@ -257,7 +263,7 @@ best_val_f1  = 0.0
 best_epoch   = 0
 train_start  = time.time()
 
-with mlflow.start_run(run_name='encoder-slm-lora-run-02-15ep') as run:
+with mlflow.start_run(run_name='encoder-slm-v2-8class-kv-flags') as run:
 
     # Log hyper-parameters
     mlflow.log_params({
@@ -279,6 +285,10 @@ with mlflow.start_run(run_name='encoder-slm-lora-run-02-15ep') as run:
     })
     mlflow.set_tag('dataset', 'CIC-IIoT-2025')
     mlflow.set_tag('architecture', 'DistilBERT-LoRA')
+    mlflow.set_tag('preprocessing', 'v2-8class-kv-flags')
+    mlflow.set_tag('verbalization', 'key-value+domain-flags')
+    mlflow.log_param('n_classes', N_CLASSES)
+    mlflow.log_param('input_format', 'key_value_with_flags')
 
     for epoch in range(1, N_EPOCHS + 1):
         # ── Train ──────────────────────────────────────────────────────
