@@ -22,6 +22,7 @@ build/
 
 # ── Large data files — tracked by DVC instead ────────────────────
 dataset/*.csv
+dataset/raw/*.csv
 dataset/preprocessed/
 !dataset/*.dvc
 !dataset/.gitignore
