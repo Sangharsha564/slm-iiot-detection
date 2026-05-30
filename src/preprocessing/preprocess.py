@@ -178,12 +178,22 @@ sec("STEP 5 — REMOVE HIGHLY CORRELATED FEATURES  (threshold > 0.95)")
 # Correlated features are redundant — they add noise without information.
 # We keep the first feature in each correlated pair.
 
+# Features that must NEVER be dropped regardless of correlation
+# These are critical Slowloris signals confirmed by domain analysis
+PROTECTED_FEATURES = [
+    'network_tcp-flags-psh_count',   # avg 812 in Slowloris vs 1 in benign — top signal
+    'network_payload-length_avg',    # small payload is a Slowloris characteristic
+    'network_ip-flags_min',          # value=2 is unique Slowloris signature
+]
+
 p("  Computing Pearson correlation matrix ...")
 corr_matrix = pd.DataFrame(X_raw, columns=feature_cols).corr().abs()
 upper = corr_matrix.where(
     np.triu(np.ones(corr_matrix.shape), k=1).astype(bool)
 )
-to_drop = [col for col in upper.columns if any(upper[col] > 0.95)]
+to_drop = [col for col in upper.columns
+           if any(upper[col] > 0.95) and col not in PROTECTED_FEATURES]
+p(f"  Protected features (never dropped): {PROTECTED_FEATURES}")
 p(f"  Features with correlation > 0.95 to another feature: {len(to_drop)}")
 for c in to_drop:
     p(f"    - {c}")
@@ -325,7 +335,21 @@ avg_ranks = {i: (mi_rank_dict.get(i, 99) + xgb_rank_dict.get(i, 99)) / 2
 combined_idx_sorted = sorted(combined_idx, key=lambda i: avg_ranks[i])
 selected_features   = [feature_cols[i] for i in combined_idx_sorted]
 
-p(f"\n  Combined selection (union of top {TOP_K} from each):")
+# Force-add protected features that might not rank in top-K
+# These are critical domain signals that MUST be in the final feature set
+for pf in PROTECTED_FEATURES:
+    if pf in feature_cols:
+        pf_idx = feature_cols.index(pf)
+        if pf_idx not in combined_idx_sorted:
+            combined_idx_sorted.append(pf_idx)
+            avg_ranks[pf_idx] = 999  # mark as force-added
+            p(f"  ★ Force-added protected feature: {pf}")
+
+# Re-sort after force-adding
+combined_idx_sorted = sorted(combined_idx_sorted, key=lambda i: avg_ranks.get(i, 999))
+selected_features   = [feature_cols[i] for i in combined_idx_sorted]
+
+p(f"\n  Combined selection (union of top {TOP_K} from each + protected):")
 p(f"  Total selected features: {len(selected_features)}")
 p(f"\n  {'Rank':<5} {'Feature':<45} {'MI rank':>8} {'XGB rank':>9} {'Avg':>6}")
 p(f"  {'─'*75}")
@@ -335,9 +359,21 @@ for rank, idx in enumerate(combined_idx_sorted, 1):
       f"{xgb_rank_dict.get(idx, 99)+1:>9} "
       f"{avg_ranks[idx]+1:>6.1f}")
 
-# Apply feature selection
-X_train_sel = X_train_scaled[:, combined_idx_sorted]
-X_test_sel  = X_test_scaled[:, combined_idx_sorted]
+# Apply feature selection to the LOG-TRANSFORMED (but not yet scaled) arrays
+# Then refit scaler on just the 31 selected features so scaler dimensions match
+X_train_log_sel = X_train_log[:, combined_idx_sorted]
+X_test_log_sel  = X_test_log[:, combined_idx_sorted]
+
+# Refit scaler on 31 selected features (replaces the 48-feature scaler)
+p(f"\n  Refitting RobustScaler on {len(combined_idx_sorted)} selected features ...")
+scaler = RobustScaler()
+X_train_sel = scaler.fit_transform(X_train_log_sel)
+X_test_sel  = scaler.transform(X_test_log_sel)
+
+# Overwrite scaler.pkl with the correct 31-feature scaler
+with open(os.path.join(OUT_DIR, 'scaler.pkl'), 'wb') as f:
+    pickle.dump(scaler, f)
+p("  Scaler refit and saved: scaler.pkl  (31 features — matches X_train.npy)")
 
 # Also keep unscaled selected training values for domain flag thresholds
 X_train_raw_sel = X_train_raw[:, combined_idx_sorted]
