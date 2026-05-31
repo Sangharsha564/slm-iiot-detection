@@ -79,25 +79,63 @@ SEED      = cfg['project']['seed']
 LABEL_MAP = {int(k): v for k, v in cfg['dataset']['label_map'].items()}
 N_CLASSES = cfg['dataset']['n_classes']
 
-# SLM hyper-parameters from config
-BASE_MODEL   = cfg['encoder_slm']['base_model']       # distilbert-base-uncased
+# ══════════════════════════════════════════════════════════════════════════
+# ★ MODEL SELECTION — change this one line to switch models
+# ══════════════════════════════════════════════════════════════════════════
+# Options:
+#   'distilbert'  → distilbert-base-uncased   (67M)  — our baseline
+#   'roberta'     → roberta-base              (125M) — stronger encoder
+#   'securebert'  → ehsanaghaei/SecureBERT    (125M) — cybersecurity domain
+MODEL_CHOICE = 'securebert'   # ← change this to 'roberta' or 'securebert'
+
+# Model registry — HuggingFace ID + correct LoRA attention layer names
+MODEL_REGISTRY = {
+    'distilbert': {
+        'hf_id'          : 'distilbert-base-uncased',
+        'lora_modules'   : ['q_lin', 'k_lin', 'v_lin', 'out_lin'],
+        'short_name'     : 'DistilBERT-67M',
+    },
+    'roberta': {
+        'hf_id'          : 'roberta-base',
+        'lora_modules'   : ['query', 'key', 'value', 'dense'],
+        'short_name'     : 'RoBERTa-125M',
+    },
+    'securebert': {
+        'hf_id'          : 'ehsanaghaei/SecureBERT',
+        'lora_modules'   : ['query', 'key', 'value', 'dense'],
+        'short_name'     : 'SecureBERT-125M',
+    },
+}
+
+assert MODEL_CHOICE in MODEL_REGISTRY, \
+    f"Unknown model: {MODEL_CHOICE}. Choose from {list(MODEL_REGISTRY.keys())}"
+
+BASE_MODEL    = MODEL_REGISTRY[MODEL_CHOICE]['hf_id']
+LORA_MODULES  = MODEL_REGISTRY[MODEL_CHOICE]['lora_modules']
+MODEL_SHORT   = MODEL_REGISTRY[MODEL_CHOICE]['short_name']
+
+# ── Other hyper-parameters ────────────────────────────────────────────────
 MAX_LENGTH   = cfg['encoder_slm']['max_length']        # 128
 BATCH_SIZE   = cfg['encoder_slm']['batch_size']        # 32
 LORA_R       = cfg['encoder_slm']['lora_r']            # 8
 LORA_ALPHA   = cfg['encoder_slm']['lora_alpha']        # 16
 
-# Training hyper-parameters (not in yaml — kept here for easy tuning)
-N_EPOCHS      = 5           # start with 5 — extend if still improving
-LEARNING_RATE = 2e-4        # run-01 LR was better than 5e-5
+# Training hyper-parameters — fixed at 5 epochs for fair model comparison
+N_EPOCHS      = 5
+LEARNING_RATE = 2e-4
 WARMUP_RATIO  = 0.1
 WEIGHT_DECAY  = 0.01
-VAL_FRAC      = 0.1        # 10% of training data for validation
+VAL_FRAC      = 0.1
+
+# Output folder per model — keeps checkpoints separate
+MODEL_DIR = os.path.join(ROOT, 'models', 'encoder_slm', MODEL_CHOICE)
+os.makedirs(MODEL_DIR, exist_ok=True)
 
 set_seed(SEED)
 device = get_device()
 
 print("\n" + "═"*65)
-print("  Encoder SLM — Training (DistilBERT + LoRA)")
+print(f"  Encoder SLM — Training ({MODEL_SHORT} + LoRA)")
 print("═"*65)
 print(f"  Base model : {BASE_MODEL}")
 print(f"  Device     : {device}")
@@ -223,7 +261,7 @@ lora_config = LoraConfig(
     lora_alpha=LORA_ALPHA,
     lora_dropout=0.1,
     # DistilBERT attention: q_lin, k_lin, v_lin, out_lin
-    target_modules=['q_lin', 'k_lin', 'v_lin', 'out_lin'],
+    target_modules=LORA_MODULES,
     bias='none',
 )
 model = get_peft_model(base_model, lora_config)
@@ -263,7 +301,7 @@ best_val_f1  = 0.0
 best_epoch   = 0
 train_start  = time.time()
 
-with mlflow.start_run(run_name='encoder-slm-v2-8class-kv-flags') as run:
+with mlflow.start_run(run_name=f'encoder-slm-{MODEL_CHOICE}-v2-5ep') as run:
 
     # Log hyper-parameters
     mlflow.log_params({
@@ -289,6 +327,24 @@ with mlflow.start_run(run_name='encoder-slm-v2-8class-kv-flags') as run:
     mlflow.set_tag('verbalization', 'key-value+domain-flags')
     mlflow.log_param('n_classes', N_CLASSES)
     mlflow.log_param('input_format', 'key_value_with_flags')
+
+    # ── Experiment description — update this for every new run ────────────
+    # This appears in the MLflow UI so you can identify what changed
+    mlflow.set_tag('model', MODEL_SHORT)
+    mlflow.set_tag('description',
+        f"Model: {MODEL_SHORT}. "
+        "Preprocessing v2: 8 classes (MitM+malware separated), "
+        "34 selected features (XGBoost+MI), log1p+RobustScaler. "
+        "Verbalization: key-value format with 6 Boolean domain flags "
+        "(HIGH_PSH 75%, IP_FLAGS_2 70%, SLOW_INTERVAL 78%, "
+        "HIGH_VOLUME 75%, LOW_PAYLOAD 100%, HIGH_SYN 63%). "
+        f"Training: {N_EPOCHS} epochs, LR={LEARNING_RATE}, "
+        f"LoRA r={LORA_R}/alpha={LORA_ALPHA}, class-weighted loss."
+    )
+    mlflow.set_tag('what_changed',
+        f"Model swapped to {MODEL_SHORT}. "
+        "Same preprocessing v2, same 5 epochs, same LR — fair comparison."
+    )
 
     for epoch in range(1, N_EPOCHS + 1):
         # ── Train ──────────────────────────────────────────────────────
@@ -447,29 +503,29 @@ with mlflow.start_run(run_name='encoder-slm-v2-8class-kv-flags') as run:
     axes[1].grid(True, alpha=0.3)
 
     plt.suptitle(
-        f'Encoder SLM (DistilBERT + LoRA) — '
+        f'Encoder SLM ({MODEL_SHORT} + LoRA) — '
         f'Test F1 macro={f1_macro:.3f}  F1 Slowloris={f1_slowloris:.3f}',
         fontsize=13
     )
     plt.tight_layout()
-    curves_path = os.path.join(FIG_DIR, 'slm_training_curves.png')
+    curves_path = os.path.join(FIG_DIR, f'slm_{MODEL_CHOICE}_training_curves.png')
     plt.savefig(curves_path, dpi=150, bbox_inches='tight')
     plt.close()
     mlflow.log_artifact(curves_path)
 
     # Confusion matrix
     cm   = confusion_matrix(y_test, test_preds)
-    fig2, ax2 = plt.subplots(figsize=(8, 7))
+    fig2, ax2 = plt.subplots(figsize=(9, 8))
     disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=target_names)
     disp.plot(ax=ax2, cmap='Blues', colorbar=False)
     ax2.set_title(
-        f'Encoder SLM Confusion Matrix  '
+        f'{MODEL_SHORT} Confusion Matrix  '
         f'(F1 macro={f1_macro:.3f}  F1 Slowloris={f1_slowloris:.3f})',
         fontsize=12
     )
     plt.xticks(rotation=30, ha='right')
     plt.tight_layout()
-    cm_path = os.path.join(FIG_DIR, 'slm_confusion_matrix.png')
+    cm_path = os.path.join(FIG_DIR, f'slm_{MODEL_CHOICE}_confusion_matrix.png')
     plt.savefig(cm_path, dpi=150, bbox_inches='tight')
     plt.close()
     mlflow.log_artifact(cm_path)
@@ -478,7 +534,7 @@ with mlflow.start_run(run_name='encoder-slm-v2-8class-kv-flags') as run:
     print(f"\n[7/7] Saving report ...")
     report_path = os.path.join(MODEL_DIR, 'classification_report.txt')
     with open(report_path, 'w') as f:
-        f.write("Encoder SLM (DistilBERT + LoRA) — Classification Report\n")
+        f.write(f"Encoder SLM ({MODEL_SHORT} + LoRA) — Classification Report\n")
         f.write("="*55 + "\n\n")
         f.write(f"Base model       : {BASE_MODEL}\n")
         f.write(f"LoRA r / alpha   : {LORA_R} / {LORA_ALPHA}\n")
