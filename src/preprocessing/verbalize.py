@@ -23,13 +23,13 @@ Usage:
     texts = v.transform(X_scaled_array)   # returns list[str]
 """
 
-import os, sys, json, pickle
+import os, sys, json, pickle  # yaml removed — label_map now loaded from json
 import numpy as np
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, ROOT)
 
-PREP_DIR = os.path.join(ROOT, 'dataset', 'preprocessed')
+PREP_DIR = os.path.join(ROOT, 'dataset', 'preprocessed_binary')
 
 
 # ── Short display names for key-value format ──────────────────────────────────
@@ -101,7 +101,7 @@ def _fmt(val, decimals=2):
 
 class Verbalizer:
     """
-    Converts a scaled feature matrix (N × 31) into N key-value text strings
+    Converts a scaled feature matrix (N × 28) into N key-value text strings
     with Boolean domain flags appended.
 
     Parameters
@@ -184,8 +184,8 @@ class Verbalizer:
         """
         Parameters
         ----------
-        X_scaled : np.ndarray of shape (N, 31)
-            Scaled feature matrix from preprocessing v2.
+        X_scaled : np.ndarray of shape (N, 28)
+            Scaled feature matrix from preprocessing v3 (binary).
 
         Returns
         -------
@@ -232,15 +232,12 @@ class Verbalizer:
 #   python src/preprocessing/verbalize.py
 # ══════════════════════════════════════════════════════════════════════════════
 if __name__ == '__main__':
-    import yaml
-
-    print("Loading preprocessed data ...")
+    print("Loading preprocessed binary data ...")
     X_train = np.load(os.path.join(PREP_DIR, 'X_train.npy'))
     y_train = np.load(os.path.join(PREP_DIR, 'y_train.npy'))
 
-    with open(os.path.join(ROOT, 'configs', 'project_config.yaml')) as f:
-        cfg = yaml.safe_load(f)
-    LABEL_MAP = {int(k): v for k, v in cfg['dataset']['label_map'].items()}
+    with open(os.path.join(PREP_DIR, 'label_map.json')) as f:
+        LABEL_MAP = {int(k): v for k, v in json.load(f).items()}
 
     v = Verbalizer()
 

@@ -1,25 +1,27 @@
 """
-Encoder SLM — Fine-tuning Script v2
-=====================================
-Fine-tunes DistilBERT + LoRA as an 8-class network-flow classifier.
-Input: key-value verbalized text with Boolean domain flags (Verbalizer v2).
-Loss : class-weighted CrossEntropyLoss — no SMOTE (original class dist).
+Encoder SLM — Fine-tuning Script v3 (Binary)
+=============================================
+Fine-tunes DistilBERT / SecureBERT / RoBERTa + LoRA as a binary classifier.
+  0 = benign    (normal IIoT traffic)
+  1 = slowloris (slow-rate HTTP DoS)
+
+Input : key-value verbalized text with Boolean domain flags (Verbalizer v2).
+Loss  : class-weighted CrossEntropyLoss (52x penalty on Slowloris misses).
+No SMOTE — class weights handle the 103:1 imbalance.
 Logs everything to MLflow.  Saves model, report, plots.
 
-Changes from v1:
-  - 8 classes (MitM and malware separated)
-  - Key-value input format with Boolean domain flags
-  - 34 selected features (XGBoost + MI combined selection)
-  - Log1p + RobustScaler preprocessing
+Changes from v2:
+  - Binary classification (2 classes: benign vs slowloris only)
+  - Loads from dataset/preprocessed_binary/ (not preprocessed/)
+  - 28 selected features (XGBoost + MI union, binary objective)
+  - LABEL_MAP and N_CLASSES loaded from label_map.json (not yaml config)
 
 Run from project root:
     python src/training/train_encoder_slm.py
 
-Outputs (in models/encoder_slm/):
+Outputs (in models/encoder_slm/<model>/):
     best_model/          ← HuggingFace model dir (LoRA weights)
     classification_report.txt
-    training_curves.png
-    confusion_matrix.png
 
 MLflow:
     experiment → 'encoder-slm'
@@ -68,7 +70,7 @@ from src.preprocessing.verbalize import Verbalizer
 with open(os.path.join(ROOT, 'configs', 'project_config.yaml')) as f:
     cfg = yaml.safe_load(f)
 
-PREP_DIR  = os.path.join(ROOT, cfg['paths']['preprocessed_dir'])
+PREP_DIR  = os.path.join(ROOT, 'dataset', 'preprocessed_binary')   # v3 binary
 MODEL_DIR = os.path.join(ROOT, 'models', 'encoder_slm')
 FIG_DIR   = os.path.join(ROOT, cfg['paths']['figures_dir'])
 LOG_DIR   = os.path.join(ROOT, cfg['paths']['logs_dir'])
@@ -76,8 +78,11 @@ for d in [MODEL_DIR, FIG_DIR, LOG_DIR]:
     os.makedirs(d, exist_ok=True)
 
 SEED      = cfg['project']['seed']
-LABEL_MAP = {int(k): v for k, v in cfg['dataset']['label_map'].items()}
-N_CLASSES = cfg['dataset']['n_classes']
+
+# Binary label map — loaded from preprocessed_binary/ not yaml (yaml has 8-class map)
+with open(os.path.join(PREP_DIR, 'label_map.json')) as _f:
+    LABEL_MAP = {int(k): v for k, v in json.load(_f).items()}
+N_CLASSES = len(LABEL_MAP)   # 2 — binary: benign=0, slowloris=1
 
 # ══════════════════════════════════════════════════════════════════════════
 # ★ MODEL SELECTION — change this one line to switch models
@@ -151,14 +156,14 @@ print(f"  LR         : {LEARNING_RATE}")
 # ══════════════════════════════════════════════════════════════════════════
 print("\n[1/7] Loading preprocessed data ...")
 
-# Use X_train.npy — pre-SMOTE, original class distribution
+# Use X_train.npy — original class distribution (no SMOTE — class weights handle imbalance)
 X_train_full = np.load(os.path.join(PREP_DIR, 'X_train.npy'))
 y_train_full = np.load(os.path.join(PREP_DIR, 'y_train.npy'))
 X_test       = np.load(os.path.join(PREP_DIR, 'X_test.npy'))
 y_test       = np.load(os.path.join(PREP_DIR, 'y_test.npy'))
 
-print(f"  Train (pre-SMOTE, original dist) : {X_train_full.shape}")
-print(f"  Test  (held-out)                 : {X_test.shape}")
+print(f"  Train (original dist, no SMOTE) : {X_train_full.shape}")
+print(f"  Test  (held-out)                : {X_test.shape}")
 
 # Class distribution
 print(f"\n  Training class distribution:")
@@ -301,7 +306,7 @@ best_val_f1  = 0.0
 best_epoch   = 0
 train_start  = time.time()
 
-with mlflow.start_run(run_name=f'encoder-slm-{MODEL_CHOICE}-v2-5ep') as run:
+with mlflow.start_run(run_name=f'encoder-slm-{MODEL_CHOICE}-v3-binary-5ep') as run:
 
     # Log hyper-parameters
     mlflow.log_params({
@@ -322,28 +327,31 @@ with mlflow.start_run(run_name=f'encoder-slm-{MODEL_CHOICE}-v2-5ep') as run:
         'class_weighted_loss': True,
     })
     mlflow.set_tag('dataset', 'CIC-IIoT-2025')
-    mlflow.set_tag('architecture', 'DistilBERT-LoRA')
-    mlflow.set_tag('preprocessing', 'v2-8class-kv-flags')
+    mlflow.set_tag('architecture', f'{MODEL_SHORT}-LoRA')
+    mlflow.set_tag('preprocessing', 'v3-binary-kv-flags')
     mlflow.set_tag('verbalization', 'key-value+domain-flags')
     mlflow.log_param('n_classes', N_CLASSES)
     mlflow.log_param('input_format', 'key_value_with_flags')
+    mlflow.log_param('classification', 'binary')
+    mlflow.log_param('classes', 'benign=0 slowloris=1')
 
     # ── Experiment description — update this for every new run ────────────
     # This appears in the MLflow UI so you can identify what changed
     mlflow.set_tag('model', MODEL_SHORT)
     mlflow.set_tag('description',
         f"Model: {MODEL_SHORT}. "
-        "Preprocessing v2: 8 classes (MitM+malware separated), "
-        "34 selected features (XGBoost+MI), log1p+RobustScaler. "
+        "Preprocessing v3: binary (benign vs slowloris), "
+        "28 selected features (XGBoost+MI union, binary:logistic), "
+        "log1p+RobustScaler, 103:1 imbalance handled via class weights. "
         "Verbalization: key-value format with 6 Boolean domain flags "
-        "(HIGH_PSH 75%, IP_FLAGS_2 70%, SLOW_INTERVAL 78%, "
-        "HIGH_VOLUME 75%, LOW_PAYLOAD 100%, HIGH_SYN 63%). "
+        "(HIGH_PSH 75%, IP_FLAGS_2 71%, SLOW_INTERVAL 75%, "
+        "HIGH_VOLUME 75%, LOW_PAYLOAD 100%, HIGH_SYN 0%). "
         f"Training: {N_EPOCHS} epochs, LR={LEARNING_RATE}, "
         f"LoRA r={LORA_R}/alpha={LORA_ALPHA}, class-weighted loss."
     )
     mlflow.set_tag('what_changed',
-        f"Model swapped to {MODEL_SHORT}. "
-        "Same preprocessing v2, same 5 epochs, same LR — fair comparison."
+        f"v3 binary pipeline: 2 classes only (benign+slowloris), "
+        f"28 features (was 34), model={MODEL_SHORT}."
     )
 
     for epoch in range(1, N_EPOCHS + 1):
