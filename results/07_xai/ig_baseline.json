@@ -1,0 +1,19 @@
+{
+  "baseline": {
+    "client max packet size": "106",
+    "server mean packet size": "54.25",
+    "server bytes": "866",
+    "server stddev packet size": "0.25",
+    "client max inter-arrival": "1.1s",
+    "server stddev inter-arrival": "0.5s",
+    "server psh packets": "1",
+    "client min inter-arrival": "0.0s",
+    "total min packet size": "54",
+    "server min inter-arrival": "0.0s",
+    "total min inter-arrival": "0.0s",
+    "server rst packets": "0",
+    "total rst packets": "0"
+  },
+  "baseline_text": "client max packet size is 106 | server mean packet size is 54.25 | server bytes is 866 | server stddev packet size is 0.25 | client max inter-arrival is 1.1s | server stddev inter-arrival is 0.5s | server psh packets is 1 | client min inter-arrival is 0.0s | total min packet size is 54 | server min inter-arrival is 0.0s | total min inter-arrival is 0.0s | server rst packets is 0 | total rst packets is 0",
+  "n_benign_train_flows": 10989
+}

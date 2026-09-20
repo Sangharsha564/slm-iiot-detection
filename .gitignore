@@ -1,73 +1,36 @@
 # ── Python ────────────────────────────────────────────────────────
 __pycache__/
 *.py[cod]
-*.pyo
-*.pyd
-.Python
 *.egg-info/
 dist/
 build/
-*.egg
-.eggs/
-
-# ── Jupyter ───────────────────────────────────────────────────────
 .ipynb_checkpoints/
-*.ipynb_checkpoints
 
 # ── macOS ─────────────────────────────────────────────────────────
 .DS_Store
-.AppleDouble
-.LSOverrideIcon
 ._*
 
-# ── Large data files — tracked by DVC instead ────────────────────
-dataset/*.csv
-dataset/raw/*.csv
-dataset/preprocessed/
-!dataset/*.dvc
-!dataset/.gitignore
-
-# ── Model weights — too large for git ────────────────────────────
-models/**/*.pt
-models/**/*.pth
-models/**/*.bin
-models/**/*.safetensors
-models/**/*.onnx
-models/**/*.pkl
-models/**/*.joblib
-
-# ── MLflow — local tracking only, not in git ─────────────────────
-mlruns/
-
-# ── Logs ──────────────────────────────────────────────────────────
-logs/
-*.log
-
-# ── Environment ───────────────────────────────────────────────────
+# ── Environment / IDE ─────────────────────────────────────────────
 .env
 .env.*
-*.env
-
-# ── IDE ───────────────────────────────────────────────────────────
 .vscode/
 .idea/
 *.swp
-*.swo
 
-# ── Temporary / output files ──────────────────────────────────────
+# ── Logs and temporary files ──────────────────────────────────────
+*.log
+!pi/result/*.log
 *.tmp
-*.temp
-
-# ── Research PDFs — large binaries, stored on filesystem only ─────
-*.pdf
-"1. Slow-Rate Detection"/
-"2. LLM for IDS"/
-"3. Detect + Explain"/
-"4. Background"/
-"supervisor shared"/
-
-# ── Generated analysis output text files ──────────────────────────
-dataset/*output*.txt
-dataset/attack\ output.txt
-dataset/benign\ output.txt
+mlruns/
 mlflow.db
+
+# ── Not published ─────────────────────────────────────────────────
+# third-party documents used to build the RAG index (see README)
+docs/
+rag/
+*.pdf
+
+# regenerated locally when scripts are re-run
+deployment/
+demo_flows.csv
+edge_log.csv

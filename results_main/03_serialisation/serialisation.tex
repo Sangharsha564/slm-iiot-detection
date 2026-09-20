@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\caption{Serialisation ablation, paired by model and seed. $\Delta$ is raw minus readable.}
+\label{tab:serialisation}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Model & Readable & Raw names & $\Delta$ \\
+\midrule
+bert-tiny & 0.8948 $\pm$ 0.0219 & 0.8916 $\pm$ 0.0078 & -0.0032 \\
+bert-mini & 0.9122 $\pm$ 0.0212 & 0.9341 $\pm$ 0.0064 & 0.0219 \\
+electra-small & 0.9117 $\pm$ 0.0311 & 0.9033 $\pm$ 0.0074 & -0.0085 \\
+tinybert-4l & 0.9154 $\pm$ 0.0297 & 0.9259 $\pm$ 0.0638 & 0.0105 \\
+minilm-l6 & 0.9083 $\pm$ 0.0264 & 0.8860 $\pm$ 0.0061 & -0.0223 \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\footnotesize Paired $t$-test over 15 matched runs: $t = -0.039$, $p = 0.969$. Wilcoxon signed-rank: $p = 0.925$. No significant difference between serialisations.
+\end{table}

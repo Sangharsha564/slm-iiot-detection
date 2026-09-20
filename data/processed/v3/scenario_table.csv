@@ -1,0 +1,13 @@
+scenario,attack_flows,median_hold_s,kept,reason
+ddos_edge1_80,843,42.07,True,connections held
+ddos_edge1_8000,2499,45.26,True,connections held
+ddos_mqtt-broker_1883,8308,0.0,False,median hold < 1.0s - attack did not take effect
+ddos_wisenet-camera_554,2376,0.01,False,median hold < 1.0s - attack did not take effect
+ddos_wisenet-camera_80,350,42.07,True,connections held
+ddos_yi-camera_80,25,0.0,False,median hold < 1.0s - attack did not take effect
+dos_edge1_80,437,30.12,True,connections held
+dos_edge1_8000,300,59.82,True,connections held
+dos_mqtt-broker_1883,1425,0.0,False,median hold < 1.0s - attack did not take effect
+dos_wisenet-camera_554,300,48.27,True,connections held
+dos_wisenet-camera_80,300,50.93,True,connections held
+dos_yi-camera_80,5,0.01,False,median hold < 1.0s - attack did not take effect

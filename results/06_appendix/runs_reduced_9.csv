@@ -1,0 +1,2 @@
+model,seed,n_params,best_epoch,epochs_run,threshold,val_mcc,test_mcc,test_f1,test_precision,test_recall,test_pr_auc,test_tp,test_fp,test_tn,test_fn,train_seconds
+electra-small,42,13549314,4,6,0.05,0.9993332368492569,0.9027967804823966,0.9166666666666666,1.0,0.8461538461538461,0.9933663714866331,781.0,0.0,3720.0,142.0,1210.2327483329864

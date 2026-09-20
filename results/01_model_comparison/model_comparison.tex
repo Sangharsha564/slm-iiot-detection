@@ -1,0 +1,20 @@
+\begin{table}[htbp]
+\centering
+\caption{Stage~1 model comparison on the held-out device (full 13 rawnames). Mean $\pm$ standard deviation over three seeds.}
+\label{tab:model-comparison}
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+Model & MCC & \$F\_1\$ & Precision & Recall & PR-AUC \\
+\midrule
+bert-tiny & 0.8916 \$\textbackslash pm\$ 0.0078 & 0.9064 \$\textbackslash pm\$ 0.0072 & 0.9996 & 0.8292 \$\textbackslash pm\$ 0.0115 & 0.9606 \\
+bert-mini & 0.9341 \$\textbackslash pm\$ 0.0064 & 0.9447 \$\textbackslash pm\$ 0.0056 & 1.0000 & 0.8953 \$\textbackslash pm\$ 0.0101 & 0.9993 \\
+electra-small & 0.9033 \$\textbackslash pm\$ 0.0074 & 0.9171 \$\textbackslash pm\$ 0.0067 & 1.0000 & 0.8469 \$\textbackslash pm\$ 0.0115 & 0.9809 \\
+tinybert-4l & 0.9259 \$\textbackslash pm\$ 0.0638 & 0.9359 \$\textbackslash pm\$ 0.0553 & 1.0000 & 0.8830 \$\textbackslash pm\$ 0.1007 & 0.9571 \\
+minilm-l6 & 0.8860 \$\textbackslash pm\$ 0.0061 & 0.9013 \$\textbackslash pm\$ 0.0055 & 0.9982 & 0.8216 \$\textbackslash pm\$ 0.0081 & 0.9227 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+\footnotesize Precision was 1.0000 in all but two runs; false positives were zero or near-zero throughout.
+\end{table}

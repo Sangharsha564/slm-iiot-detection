@@ -1,0 +1,2 @@
+split,prob_attack,pred,label,device,scenario,text
+test,0.00073012855,0,1,wisenet-camera,dos_wisenet-camera_80,src2dst_max_ps is 264 | dst2src_mean_ps is 74 | dst2src_bytes is 370 | dst2src_stddev_ps is 0 | src2dst_max_piat_ms is 6408 | dst2src_stddev_piat_ms is 3095.70 | dst2src_psh_packets is 0 | src2dst_min_piat_ms is 0 | bidirectional_min_ps is 66 | dst2src_min_piat_ms is 1000 | bidirectional_min_piat_ms is 0 | dst2src_rst_packets is 0 | bidirectional_rst_packets is 0

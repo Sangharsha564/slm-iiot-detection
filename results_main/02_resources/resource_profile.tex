@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\caption{Deployment cost measured on CPU at batch size~1, the condition under which an inline detector operates.}
+\label{tab:resources}
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+Model & Disk (MB) & RSS (MB) & p50 (ms) & p95 (ms) & Flows/s \\
+\midrule
+bert-tiny & 18.50 & 23.20 & 0.94 & 1.11 & 1045 \\
+bert-mini & 45.60 & 34.60 & 3.54 & 3.77 & 281 \\
+electra-small & 55.20 & 72.30 & 10.66 & 11.30 & 93 \\
+tinybert-4l & 58.40 & 48.70 & 5.73 & 5.99 & 174 \\
+minilm-l6 & 91.80 & 74.20 & 8.59 & 9.47 & 114 \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\footnotesize Measured on the rawnames seed-42 runs. These quantities depend on architecture, not on seed or serialisation. Single-threaded execution was fastest for four of five models.
+\end{table}

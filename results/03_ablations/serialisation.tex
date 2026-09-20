@@ -1,0 +1,20 @@
+\begin{table}[htbp]
+\centering
+\caption{Serialisation ablation: test MCC under readable feature labels versus raw column names, paired by model and seed.}
+\label{tab:serialisation}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Model & Readable & Raw names & \$\textbackslash Delta\$ \\
+\midrule
+bert-tiny & 0.8948 \$\textbackslash pm\$ 0.0219 & 0.8916 \$\textbackslash pm\$ 0.0078 & -0.0032 \\
+bert-mini & 0.9122 \$\textbackslash pm\$ 0.0212 & 0.9341 \$\textbackslash pm\$ 0.0064 & 0.0219 \\
+electra-small & 0.9117 \$\textbackslash pm\$ 0.0311 & 0.9033 \$\textbackslash pm\$ 0.0074 & -0.0085 \\
+tinybert-4l & 0.9154 \$\textbackslash pm\$ 0.0297 & 0.9259 \$\textbackslash pm\$ 0.0638 & 0.0105 \\
+minilm-l6 & 0.9083 \$\textbackslash pm\$ 0.0264 & 0.8860 \$\textbackslash pm\$ 0.0061 & -0.0223 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+\footnotesize Paired $t$-test over 15 matched runs: $t = -0.039$, $p = 0.969$. The difference is not statistically significant.
+\end{table}

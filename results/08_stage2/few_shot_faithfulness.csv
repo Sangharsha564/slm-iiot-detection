@@ -1,0 +1,61 @@
+model,condition,flow_key,scenario,strict_json,recoverable_output,schema_ok,names_top_feature,direction_correct,direction_wrong_on,numbers_grounded,ungrounded,lowers_preserved,lowers_flattened,no_false_comparison,false_comparison_on,no_flood_language,flood_phrase,mitigation_present,mitigation_safe,advice_grounded,advice_generic_only,template_similarity,not_templated,retrieved_has_mitigation,quoted_run_words,not_quoting,n_words,length_ok,gen_seconds
+qwen05,few_shot,469f6439a49f3fd9,ddos_wisenet-camera_80,False,True,False,True,,,True,,True,,True,,True,,True,True,False,True,1.0,False,,,,68,True,2.6629562089947285
+qwen05,few_shot,5c318988490d1158,dos_wisenet-camera_554,True,True,False,True,,,True,,True,,,,True,,False,,False,False,0.7584269662921348,False,,,,70,True,2.1396850839955732
+qwen05,few_shot,1777cce92165326e,dos_wisenet-camera_80,True,True,False,True,,,False,8,True,,,,True,,False,,False,False,0.8587731811697575,False,,,,68,True,2.053311791998567
+qwen05,few_shot,4daa82a99ec18615,ddos_wisenet-camera_80,True,True,False,True,,,False,88,,,True,,True,,False,,False,False,0.4738372093023256,True,,,,67,True,2.056013207999058
+qwen05,few_shot,a35c7fb55c6742ba,ddos_wisenet-camera_80,True,True,False,False,,,True,,True,,,,True,,True,True,False,True,0.03576751117734724,True,,,,52,True,1.740812875010306
+qwen05,few_shot,0ea7bad5dbb85bb1,ddos_wisenet-camera_80,True,True,True,True,,,True,,,,,,True,,True,True,False,True,0.717391304347826,True,,,,62,True,2.215291917003924
+qwen05,few_shot,e340507fa26fae9e,dos_wisenet-camera_554,True,True,False,True,,,True,,True,,,,True,,True,True,False,True,0.8252148997134671,False,,,,67,True,2.167831208993448
+qwen05,few_shot,d247007d2316ce78,ddos_wisenet-camera_80,True,True,True,True,,,True,,,,True,,True,,True,True,False,True,0.7151702786377709,True,,,,62,True,2.2221831669885432
+qwen05,few_shot,18c2931c2ae44927,ddos_wisenet-camera_80,True,True,True,True,,,True,,,,,,True,,True,True,False,True,0.7151702786377709,True,,,,62,True,2.220674540993059
+qwen05,few_shot,6864815a323f55cd,dos_wisenet-camera_80,True,True,True,True,,,True,,,,,,True,,True,True,False,True,0.7151702786377709,True,,,,62,True,2.200450667005498
+qwen05,few_shot,363bac860de089bc,ddos_wisenet-camera_80,False,False,False,True,True,,True,,,,,,True,,False,,False,False,0.03167420814479638,True,,,,78,True,2.2465263339981902
+qwen05,few_shot,79fee9f805fddef3,ddos_wisenet-camera_80,True,True,True,True,,,True,,,,,,True,,True,True,False,True,0.717391304347826,True,,,,62,True,2.222512749998714
+qwen05,few_shot,7d8512373bb2b9db,ddos_wisenet-camera_80,True,True,True,True,,,True,,,,,,True,,True,True,False,True,0.717391304347826,True,,,,62,True,2.2091503749979893
+qwen05,few_shot,16c6c7918409991c,dos_wisenet-camera_80,True,True,True,True,,,True,,,,True,,True,,True,True,False,True,0.721875,True,,,,61,True,2.2395419160020538
+qwen05,few_shot,b525457ec66a13b9,dos_wisenet-camera_554,False,True,False,True,,,True,,True,,True,,True,,True,True,False,True,1.0,False,,,,68,True,2.312430874997517
+qwen05,few_shot,eecc266306549a70,ddos_wisenet-camera_80,True,True,True,True,,,True,,,,,,True,,True,True,False,True,0.717391304347826,True,,,,62,True,2.211048375000246
+qwen05,few_shot,69653aa35a48deac,dos_wisenet-camera_554,True,True,True,True,,,True,,,,True,,True,,True,True,False,True,0.721875,True,,,,61,True,2.2580115830060095
+qwen05,few_shot,6bd41264607a90ba,ddos_wisenet-camera_80,True,True,True,True,,,True,,,,,,True,,True,True,False,True,0.7151702786377709,True,,,,62,True,2.208908207991044
+qwen05,few_shot,c059293f4df6b774,dos_wisenet-camera_554,True,True,True,True,,,True,,,,True,,True,,True,True,False,True,0.721875,True,,,,61,True,2.233789915990201
+qwen05,few_shot,2cf40cca8358bfd9,dos_wisenet-camera_554,True,True,False,True,,,True,,True,,,,True,,False,,False,False,0.8587731811697575,False,,,,68,True,2.12579520799045
+llama1b,few_shot,469f6439a49f3fd9,ddos_wisenet-camera_80,False,False,False,True,True,,True,,True,,True,,True,,False,,False,False,0.02636916835699797,True,,,,96,False,3.2201822079950944
+llama1b,few_shot,5c318988490d1158,dos_wisenet-camera_554,False,True,False,True,,,True,,True,,,,True,,True,True,False,True,0.7314949201741655,True,,,,66,True,3.2427422079927055
+llama1b,few_shot,1777cce92165326e,dos_wisenet-camera_80,False,True,False,True,,,True,,True,,,,True,,True,True,False,True,0.8034934497816594,False,,,,65,True,2.867698250003741
+llama1b,few_shot,4daa82a99ec18615,ddos_wisenet-camera_80,False,True,False,False,,,True,,,,True,,True,,True,True,False,True,0.48514851485148514,True,,,,50,True,2.569485749991145
+llama1b,few_shot,a35c7fb55c6742ba,ddos_wisenet-camera_80,True,True,True,True,,,True,,True,,,,True,,True,True,False,True,0.641566265060241,True,,,,65,True,2.9380323749937816
+llama1b,few_shot,0ea7bad5dbb85bb1,ddos_wisenet-camera_80,False,True,False,True,,,True,,,,,,True,,True,True,False,True,0.719626168224299,True,,,,62,True,2.9169770829903428
+llama1b,few_shot,e340507fa26fae9e,dos_wisenet-camera_554,False,True,False,True,,,True,,True,,,,True,,True,True,False,True,0.74884437596302,True,,,,59,True,2.7416318749892525
+llama1b,few_shot,d247007d2316ce78,ddos_wisenet-camera_80,True,True,True,True,True,,True,,,,True,,True,,True,True,False,True,0.6761768901569187,True,,,,67,True,2.9579048749874346
+llama1b,few_shot,18c2931c2ae44927,ddos_wisenet-camera_80,False,True,False,True,,,True,,,,,,True,,True,True,False,True,0.6592,True,,,,58,True,2.845176959002856
+llama1b,few_shot,6864815a323f55cd,dos_wisenet-camera_80,True,True,True,True,,,True,,,,,,True,,True,True,False,True,0.6592,True,,,,58,True,2.8010598749970086
+llama1b,few_shot,363bac860de089bc,ddos_wisenet-camera_80,False,True,False,True,,,True,,,,,,True,,True,True,False,True,0.49645390070921985,True,,,,48,True,2.6079587080021156
+llama1b,few_shot,79fee9f805fddef3,ddos_wisenet-camera_80,False,True,False,True,,,True,,,,,,True,,True,True,False,True,0.719626168224299,True,,,,62,True,2.938279208989115
+llama1b,few_shot,7d8512373bb2b9db,ddos_wisenet-camera_80,False,True,False,True,,,True,,,,,,True,,True,True,False,True,0.719626168224299,True,,,,62,True,2.9234719169908203
+llama1b,few_shot,16c6c7918409991c,dos_wisenet-camera_80,False,True,False,True,,,True,,,,True,,True,,True,True,False,True,0.6816901408450704,True,,,,68,True,3.0001026669924613
+llama1b,few_shot,b525457ec66a13b9,dos_wisenet-camera_554,True,True,True,True,,,True,,True,,True,,True,,True,True,False,True,1.0,False,,,,68,True,3.054309207989718
+llama1b,few_shot,eecc266306549a70,ddos_wisenet-camera_80,False,True,False,True,,,True,,,,,,True,,True,True,False,True,0.719626168224299,True,,,,62,True,2.914707541000098
+llama1b,few_shot,69653aa35a48deac,dos_wisenet-camera_554,False,True,False,True,,,True,,,,True,,True,,True,True,False,True,0.6816901408450704,True,,,,68,True,2.985853375008446
+llama1b,few_shot,6bd41264607a90ba,ddos_wisenet-camera_80,False,True,False,True,,,True,,,,,,True,,True,True,False,True,0.7310126582278481,True,,,,60,True,2.8514238330099033
+llama1b,few_shot,c059293f4df6b774,dos_wisenet-camera_554,False,True,False,True,,,True,,,,True,,True,,True,True,False,True,0.6816901408450704,True,,,,68,True,3.2394679999997607
+llama1b,few_shot,2cf40cca8358bfd9,dos_wisenet-camera_554,False,True,False,True,,,True,,True,,,,True,,True,True,False,True,0.7649769585253456,False,,,,59,True,2.807646040993859
+qwen15,few_shot,469f6439a49f3fd9,ddos_wisenet-camera_80,True,True,True,True,,,True,,True,,True,,True,,True,True,False,True,0.060927152317880796,True,,,,69,True,4.4949311669915915
+qwen15,few_shot,5c318988490d1158,dos_wisenet-camera_554,False,True,False,True,False,server stddev packet size,True,,True,,,,True,,True,True,False,True,0.06265060240963856,True,,,,86,False,6.1804280420037685
+qwen15,few_shot,1777cce92165326e,dos_wisenet-camera_80,True,True,True,True,False,"server stddev packet size,server bytes",True,,True,,,,True,,True,True,False,True,0.0644361833952912,True,,,,81,False,4.761541957996087
+qwen15,few_shot,4daa82a99ec18615,ddos_wisenet-camera_80,True,True,True,True,True,,True,,,,True,,True,,True,True,False,True,0.03571428571428571,True,,,,71,True,4.293867625005078
+qwen15,few_shot,a35c7fb55c6742ba,ddos_wisenet-camera_80,False,False,False,True,True,,True,,False,server bytes,,,True,,False,,False,False,0.02747791952894995,True,,,,96,False,4.601310041995021
+qwen15,few_shot,0ea7bad5dbb85bb1,ddos_wisenet-camera_80,False,False,False,True,True,,True,,,,,,True,,False,,False,False,0.024013722126929673,True,,,,112,False,5.434551583995926
+qwen15,few_shot,e340507fa26fae9e,dos_wisenet-camera_554,True,True,True,True,False,"server mean packet size,server bytes",True,,True,,,,True,,True,True,False,True,0.06565656565656566,True,,,,78,True,4.889368707998074
+qwen15,few_shot,d247007d2316ce78,ddos_wisenet-camera_80,False,False,False,True,True,,True,,,,True,,True,,False,,False,False,0.024208566108007448,True,,,,87,False,5.322633917006897
+qwen15,few_shot,18c2931c2ae44927,ddos_wisenet-camera_80,True,True,True,True,,,True,,,,,,True,,True,True,False,True,0.25487256371814093,True,,,,58,True,5.189509999996517
+qwen15,few_shot,6864815a323f55cd,dos_wisenet-camera_80,True,True,True,True,,,True,,,,,,True,,True,True,False,True,0.2631578947368421,True,,,,56,True,3.972812915992108
+qwen15,few_shot,363bac860de089bc,ddos_wisenet-camera_80,False,False,False,True,True,,True,,,,,,True,,False,,False,False,0.02122820318423048,True,,,,111,False,7.256980249992921
+qwen15,few_shot,79fee9f805fddef3,ddos_wisenet-camera_80,False,False,False,True,True,,True,,,,,,True,,False,,False,False,0.024013722126929673,True,,,,112,False,5.777175916009583
+qwen15,few_shot,7d8512373bb2b9db,ddos_wisenet-camera_80,True,True,True,True,,,True,,,,,,True,,True,True,False,True,0.16857142857142857,True,,,,61,True,4.609794916003011
+qwen15,few_shot,16c6c7918409991c,dos_wisenet-camera_80,False,False,False,True,True,,True,,,,True,,True,,False,,False,False,0.02411873840445269,True,,,,88,False,5.289811124996049
+qwen15,few_shot,b525457ec66a13b9,dos_wisenet-camera_554,True,True,True,True,True,,True,,,,True,,True,,True,True,False,True,0.09198813056379822,True,,,,51,True,3.5847616660030326
+qwen15,few_shot,eecc266306549a70,ddos_wisenet-camera_80,False,False,False,True,True,,True,,,,,,True,,False,,False,False,0.024013722126929673,True,,,,112,False,5.45101999999315
+qwen15,few_shot,69653aa35a48deac,dos_wisenet-camera_554,True,True,True,True,,,True,,,,True,,True,,True,True,False,True,0.2631578947368421,True,,,,56,True,4.233131458007847
+qwen15,few_shot,6bd41264607a90ba,ddos_wisenet-camera_80,False,False,False,True,True,,True,,,,,,True,,False,,False,False,0.02294792586054722,True,,,,110,False,5.34647837500961
+qwen15,few_shot,c059293f4df6b774,dos_wisenet-camera_554,True,True,True,True,,,True,,,,True,,True,,True,True,False,True,0.09388335704125178,True,,,,61,True,4.432082582992734
+qwen15,few_shot,2cf40cca8358bfd9,dos_wisenet-camera_554,True,True,True,True,False,server bytes,True,,True,,,,True,,True,True,False,True,0.06590621039290241,True,,,,78,True,4.6635680830077035

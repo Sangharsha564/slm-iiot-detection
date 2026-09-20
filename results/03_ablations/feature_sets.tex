@@ -1,0 +1,22 @@
+\begin{table}[htbp]
+\centering
+\caption{Feature-set ablation. Removing either the four lowest-mutual-information features or the highest-scoring feature degraded transfer for most models.}
+\label{tab:feature-ablation}
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+Feature set & Model & \$n\$ & MCC & Recall & Missed \\
+\midrule
+full 13 & bert-mini & 13 & 0.9035 & 0.8472 & 141.0000 \\
+full 13 & bert-tiny & 13 & 0.8742 & 0.8017 & 183.0000 \\
+no fingerprint & bert-tiny & 12 & 0.8544 & 0.7714 & 211.0000 \\
+full 13 & electra-small & 13 & 0.9153 & 0.8657 & 124.0000 \\
+no fingerprint & electra-small & 12 & 0.9387 & 0.9025 & 90.0000 \\
+no fingerprint reduced & electra-small & 8 & 0.8993 & 0.8407 & 147.0000 \\
+reduced 9 & electra-small & 9 & 0.9028 & 0.8462 & 142.0000 \\
+full 13 & minilm-l6 & 13 & 0.8840 & 0.8169 & 169.0000 \\
+full 13 & tinybert-4l & 13 & 0.9173 & 0.8689 & 121.0000 \\
+no fingerprint & tinybert-4l & 12 & 0.8951 & 0.8342 & 153.0000 \\
+\bottomrule
+\end{tabular}
+\end{table}

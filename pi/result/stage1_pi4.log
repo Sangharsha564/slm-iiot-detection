@@ -1,0 +1,42 @@
+host       plc  aarch64  Linux
+python     3.11.2   torch 2.13.0+cpu   threads 4
+threshold  0.2400  (from /home/sangharsha/stage1/metrics.json)
+
+data       23064 flows from 3 files
+             train_text               13815   attack   2826 (20.5%)
+             val_text                  4606   attack    942 (20.5%)
+             test_text                 4643   attack    923 (19.9%)
+Loading weights:   0%|          | 0/73 [00:00<?, ?it/s]Loading weights:  62%|██████▏   | 45/73 [00:00<00:00, 423.48it/s]Loading weights: 100%|██████████| 73/73 [00:00<00:00, 429.32it/s]
+
+model      11.2M parameters, 44.7 MB of weights in float32, loaded in 11.3s
+           max_length 128, device cpu
+
+latency    batched   898.8s for 23064 flows = 38.97 ms/flow, 26 flows/s (batch 32)
+           single    median 72.53 ms, p95 72.80 ms, p99 74.59 ms, max 74.93 ms (n=200, batch 1)
+           note      timings include tokenisation, which is the real per-flow cost
+memory     peak RSS 506 MB for the whole process (interpreter and libraries included, not just weights)
+
+DETECTION at threshold 0.2400
+  split                  n    acc%    bal%   prec%    rec%      F1     MCC   FPR%     AUC  PR-AUC   TP/FP/FN/TN
+  train_text         13815   99.98   99.97   99.93   99.96   99.95  0.9993   0.02  100.00  100.00   2825/2/1/10987
+  val_text            4606   99.96   99.89  100.00   99.79   99.89  0.9987   0.00  100.00   99.99   940/0/2/3664
+  test_text           4643   98.00   94.96  100.00   89.92   94.69  0.9366   0.00   99.99   99.95   830/0/93/3720
+  ------------------------------------------------------------------------------------------------------------
+  COMBINED           23064   99.58   98.97   99.96   97.95   98.94  0.9869   0.01  100.00   99.99   4595/2/96/18371
+
+  The model was fitted on train, so only the test row is evidence
+  of detection performance. COMBINED is dominated by training
+  flows -- use it for the cross-device comparison and for a
+  whole-dataset throughput figure, not as a headline result.
+  On a ~1:4 split quote balanced accuracy or MCC, not accuracy:
+  predicting all-benign would score about 0.80.
+
+  BY SCENARIO (test split only)
+  split                  n    acc%    bal%   prec%    rec%      F1     MCC   FPR%     AUC  PR-AUC   TP/FP/FN/TN
+  ddos_wisenet-cam     370   84.59   91.36  100.00   82.73   90.55  0.5841   0.00   99.19   99.90   273/0/57/40
+  dos_wisenet-came     343   99.71   99.83  100.00   99.67   99.83  0.9869   0.00  100.00  100.00   299/0/1/43
+  dos_wisenet-came     327   89.30   94.03  100.00   88.05   93.65  0.6587   0.00   99.57   99.95   258/0/35/34
+  benign_baseline     3603  100.00   50.00    0.00    0.00    0.00  0.0000   0.00    0.00    0.00   0/0/0/3603
+
+written    results/stage1_probs_pi4.csv
+           results/stage1_summary_pi4.json

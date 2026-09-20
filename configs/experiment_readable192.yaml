@@ -1,0 +1,74 @@
+# Experiment-level settings.
+
+experiment:
+  name: stage1_slowloris
+  seeds: [42, 43, 44]      # three runs per model; report mean and std
+
+data:
+  processed_dir: data/processed/v3
+  train_file: train_text.csv
+  val_file: val_text.csv
+  test_file: test_text.csv
+  feature_spec: selected_features.json
+
+# Feature-set variants. The 9-feature variant drops the four features whose
+# mutual information falls below 0.08 and whose class medians are identical.
+feature_sets:
+  full_13:
+    drop: []
+
+  reduced_9:
+    drop:
+      - dst2src_min_piat_ms
+      - bidirectional_min_piat_ms
+      - dst2src_rst_packets
+      - bidirectional_rst_packets
+
+  # Drops the packet-size fingerprint the models were found to memorise.
+  # src2dst_max_ps is exactly 234 for every training attack flow (IQR 0.000),
+  # and every missed test flow lies at 253-264.
+  no_fingerprint:
+    drop:
+      - src2dst_max_ps
+
+  # Both: no fingerprint and no near-zero-MI features.
+  no_fingerprint_reduced:
+    drop:
+      - src2dst_max_ps
+      - dst2src_min_piat_ms
+      - bidirectional_min_piat_ms
+      - dst2src_rst_packets
+      - bidirectional_rst_packets
+
+class_weighting:
+  enabled: true
+  # weight for the positive (attack) class; computed from train if null
+  attack_weight: null
+
+metrics:
+  primary: mcc
+  report:
+    - accuracy
+    - precision
+    - recall
+    - f1
+    - mcc
+    - pr_auc
+    - roc_auc
+    - balanced_accuracy
+
+# Resource profiling targets the deployment device (Raspberry Pi PLC, no GPU),
+# so all profiling runs on CPU regardless of training device.
+profiling:
+  device: cpu
+  latency_runs: 1000
+  latency_warmup: 50
+  batch_sizes: [1, 8, 32]
+  threads: [1, 4]          # Pi 4 has 4 cores
+  measure_quantised: true
+
+mlflow:
+  tracking_uri: file:./mlruns
+  experiment_name: stage1_slowloris_readable192
+
+

@@ -1,0 +1,33 @@
+{
+  "run": "/Users/sangharshathapa/Desktop/slm_iiot_final/experiments/stage1_full_13_readable192/bert-mini_s42",
+  "threshold": 0.24,
+  "ig_steps": 500,
+  "max_length": 128,
+  "n_flows": 923,
+  "outcome_counts": {
+    "detected": 830,
+    "missed": 93
+  },
+  "completeness_error": {
+    "median": 1.621246337890625e-05,
+    "mean": 2.722514799330888e-05,
+    "q75": 1.7642974853515625e-05,
+    "max": 0.0002732276916503906,
+    "median_relative_to_logodds": 1.3318580129950734e-06
+  },
+  "unassigned_frac": {
+    "median": 0.09127600129773963,
+    "mean": 0.10125878436100923,
+    "q75": 0.09300440571573386,
+    "max": 0.44331733131112727
+  },
+  "token_alignment": {
+    "n_flows_with_length_mismatch": 905,
+    "pct_with_length_mismatch": 98.0498374864572,
+    "mean_n_tokens_flow": 117.40845070422536,
+    "mean_n_tokens_baseline": 119.0
+  },
+  "runtime_s_total": 1317.437081958,
+  "runtime_ms_per_flow": 1427.3424506587214,
+  "top_feature_overall": "client max packet size"
+}

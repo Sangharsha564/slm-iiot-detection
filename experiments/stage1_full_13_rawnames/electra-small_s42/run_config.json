@@ -1,0 +1,75 @@
+{
+  "model": "electra-small",
+  "repo": "google/electra-small-discriminator",
+  "seed": 42,
+  "feature_set": "full_13",
+  "serialisation": "experiment_rawnames",
+  "processed_dir": "data/processed/v3_rawnames",
+  "n_features": 13,
+  "features": [
+    "src2dst_max_ps",
+    "dst2src_mean_ps",
+    "dst2src_bytes",
+    "dst2src_stddev_ps",
+    "src2dst_max_piat_ms",
+    "dst2src_stddev_piat_ms",
+    "dst2src_psh_packets",
+    "src2dst_min_piat_ms",
+    "bidirectional_min_ps",
+    "dst2src_min_piat_ms",
+    "bidirectional_min_piat_ms",
+    "dst2src_rst_packets",
+    "bidirectional_rst_packets"
+  ],
+  "dropped": [],
+  "mechanisms": {
+    "src2dst_max_ps": "packet size",
+    "dst2src_mean_ps": "packet size",
+    "dst2src_bytes": "server response",
+    "dst2src_stddev_ps": "packet size",
+    "src2dst_max_piat_ms": "inter-arrival",
+    "dst2src_stddev_piat_ms": "inter-arrival",
+    "dst2src_psh_packets": "server response",
+    "src2dst_min_piat_ms": "inter-arrival",
+    "bidirectional_min_ps": "packet size",
+    "dst2src_min_piat_ms": "inter-arrival",
+    "bidirectional_min_piat_ms": "inter-arrival",
+    "dst2src_rst_packets": "server response",
+    "bidirectional_rst_packets": "other"
+  },
+  "hyperparameters": {
+    "max_length": 192,
+    "batch_size": 32,
+    "eval_batch_size": 64,
+    "learning_rate": 3e-05,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.1,
+    "epochs": 10,
+    "early_stopping_patience": 4,
+    "early_stopping_metric": "val_mcc",
+    "gradient_clip": 1.0
+  },
+  "attack_class_weight": 3.888535031847134,
+  "n_params": 13549314,
+  "n_trainable": 13549314,
+  "device": "cpu",
+  "split_sizes": {
+    "train": {
+      "n": 13815,
+      "attack": 2826
+    },
+    "val": {
+      "n": 4606,
+      "attack": 942
+    },
+    "test": {
+      "n": 4643,
+      "attack": 923
+    }
+  },
+  "environment": {
+    "python": "3.11.15",
+    "torch": "2.13.0",
+    "platform": "macOS-26.5.2-arm64-arm-64bit"
+  }
+}

@@ -1,0 +1,21 @@
+n,flow_key,scenario,prob,f1,v1,s1,f2,v2,f3,v3
+1,469f6439a49f,ddos_wisenet-camera_80,0.9991589784622192,client max packet size,234.0,0.8488097863709201,server stddev packet size,4.62,server min inter-arrival,0.0
+2,5c318988490d,dos_wisenet-camera_554,0.9991607666015624,client max packet size,234.0,0.8535080537243942,server stddev packet size,3.02,server mean packet size,67.14
+3,1777cce92165,dos_wisenet-camera_80,0.9991594552993774,client max packet size,234.0,0.8818230272133032,server stddev packet size,3.58,server bytes,338.0
+4,4daa82a99ec1,ddos_wisenet-camera_80,0.998537540435791,client max packet size,74.0,0.3825368308453079,server min inter-arrival,0.0,total min packet size,74.0
+5,a35c7fb55c67,ddos_wisenet-camera_80,0.9986259937286376,client max packet size,255.0,0.4203627701802148,server bytes,296.0,server min inter-arrival,1.0
+6,0ea7bad5dbb8,ddos_wisenet-camera_80,0.9986777901649476,client max packet size,255.0,0.4711269211948823,server min inter-arrival,1.0,server mean packet size,74.0
+7,e340507fa26f,dos_wisenet-camera_554,0.9991577863693236,client max packet size,234.0,0.916102196864645,server mean packet size,68.86,server bytes,482.0
+8,d247007d2316,ddos_wisenet-camera_80,0.9991549253463744,client max packet size,234.0,0.5291465462102095,server min inter-arrival,0.0,server stddev packet size,0.0
+9,18c2931c2ae4,ddos_wisenet-camera_80,0.9988583326339722,client max packet size,255.0,0.4758124448030912,server min inter-arrival,1.0,server stddev packet size,0.0
+10,6864815a323f,dos_wisenet-camera_80,0.9987527132034302,client max packet size,255.0,0.4515767622890985,server min inter-arrival,1.0,server stddev packet size,0.0
+11,363bac860de0,ddos_wisenet-camera_80,0.9987560510635376,client max packet size,255.0,0.4475875240381289,server min inter-arrival,1.0,server mean packet size,74.0
+12,79fee9f805fd,ddos_wisenet-camera_80,0.998715877532959,client max packet size,255.0,0.4605479835075777,server min inter-arrival,1.0,server mean packet size,74.0
+13,7d8512373bb2,ddos_wisenet-camera_80,0.9986949563026428,client max packet size,255.0,0.4644375259931073,server min inter-arrival,1.0,server mean packet size,74.0
+14,16c6c7918409,dos_wisenet-camera_80,0.9991565942764282,client max packet size,234.0,0.6146778772965643,server min inter-arrival,0.0,server stddev packet size,4.0
+15,b525457ec66a,dos_wisenet-camera_554,0.999159812927246,client max packet size,234.0,0.8540095132573802,server stddev packet size,3.27,server min inter-arrival,0.0
+16,eecc26630654,ddos_wisenet-camera_80,0.9986842274665833,client max packet size,255.0,0.4704296003715269,server min inter-arrival,1.0,server mean packet size,74.0
+17,69653aa35a48,dos_wisenet-camera_554,0.999157190322876,client max packet size,234.0,0.5838012890103937,server min inter-arrival,0.0,server stddev packet size,4.0
+18,6bd41264607a,ddos_wisenet-camera_80,0.998854398727417,client max packet size,255.0,0.4738158979750208,server min inter-arrival,1.0,server stddev packet size,0.0
+19,c059293f4df6,dos_wisenet-camera_554,0.9991573095321656,client max packet size,234.0,0.6055394668210348,server min inter-arrival,0.0,server stddev packet size,5.66
+20,2cf40cca8358,dos_wisenet-camera_554,0.9991588592529296,client max packet size,234.0,0.9010153918903402,server stddev packet size,3.58,server bytes,338.0

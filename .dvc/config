@@ -1,8 +1,0 @@
-[core]
-    analytics = false
-    remote = dagshub
-['remote "gdrive"']
-    url = gdrive://1nXhUsCyA78thiBs_mnsqMF0YfRuF4BD3
-    gdrive_acknowledge_abuse = true
-['remote "dagshub"']
-    url = https://dagshub.com/Sangharsha564/slm-iiot-detection.dvc

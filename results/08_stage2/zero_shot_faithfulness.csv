@@ -1,0 +1,61 @@
+model,condition,flow_key,scenario,strict_json,recoverable_output,schema_ok,names_top_feature,direction_correct,direction_wrong_on,numbers_grounded,ungrounded,lowers_preserved,lowers_flattened,no_false_comparison,false_comparison_on,no_flood_language,flood_phrase,mitigation_present,mitigation_safe,advice_grounded,advice_generic_only,template_similarity,not_templated,retrieved_has_mitigation,quoted_run_words,not_quoting,n_words,length_ok,gen_seconds
+qwen05,zero_shot,469f6439a49f3fd9,ddos_wisenet-camera_80,True,True,False,True,True,,True,,False,"server stddev packet size,server min inter-arrival",False,server min inter-arrival,True,,True,False,False,False,0.07378129117259552,True,,,,63,True,2.217976832995191
+qwen05,zero_shot,5c318988490d1158,dos_wisenet-camera_554,True,True,False,True,,,True,,,,,,True,,True,True,False,True,0.08495575221238938,True,,,,31,True,1.454256582990638
+qwen05,zero_shot,1777cce92165326e,dos_wisenet-camera_80,True,True,False,True,True,,True,,,,,,True,,True,False,False,False,0.14428857715430862,True,,,,22,True,0.9853987919923384
+qwen05,zero_shot,4daa82a99ec18615,ddos_wisenet-camera_80,True,True,False,True,False,client max packet size,True,,,,True,,True,,True,False,False,False,0.09020217729393468,True,,,,42,True,1.518078624998452
+qwen05,zero_shot,a35c7fb55c6742ba,ddos_wisenet-camera_80,True,True,False,True,False,"server bytes,server min inter-arrival",True,,,,,,True,,True,False,False,False,0.06627218934911243,True,,,,76,True,2.2046907920012018
+qwen05,zero_shot,0ea7bad5dbb85bb1,ddos_wisenet-camera_80,True,True,False,True,False,server mean packet size,True,,,,,,True,,True,False,False,False,0.07503234152652005,True,,,,65,True,1.8716390829940792
+qwen05,zero_shot,e340507fa26fae9e,dos_wisenet-camera_554,True,True,False,True,False,server bytes,True,,,,,,False,large volume,True,True,False,True,0.0880503144654088,True,,,,47,True,1.5390959579963237
+qwen05,zero_shot,d247007d2316ce78,ddos_wisenet-camera_80,True,True,False,True,True,,True,,,,True,,True,,True,False,False,False,0.07304785894206549,True,,,,66,True,1.895788124995306
+qwen05,zero_shot,18c2931c2ae44927,ddos_wisenet-camera_80,True,True,False,True,True,,True,,,,,,True,,True,True,False,True,0.07397959183673469,True,,,,67,True,2.2187695000029635
+qwen05,zero_shot,6864815a323f55cd,dos_wisenet-camera_80,True,True,False,True,False,server min inter-arrival,True,,,,,,True,,True,False,False,False,0.04962779156327544,True,,,,61,True,1.644019458006369
+qwen05,zero_shot,363bac860de089bc,ddos_wisenet-camera_80,True,True,False,True,False,server mean packet size,True,,,,,,True,,True,False,False,False,0.07503234152652005,True,,,,65,True,1.8785681250010384
+qwen05,zero_shot,79fee9f805fddef3,ddos_wisenet-camera_80,True,True,False,True,False,server min inter-arrival,True,,,,,,True,,True,False,False,False,0.08481532147742818,True,,,,61,True,1.7989487500017276
+qwen05,zero_shot,7d8512373bb2b9db,ddos_wisenet-camera_80,True,True,False,True,False,server min inter-arrival,True,,,,,,True,,True,False,False,False,0.08481532147742818,True,,,,61,True,1.8154595420055557
+qwen05,zero_shot,16c6c7918409991c,dos_wisenet-camera_80,True,True,False,True,True,,True,,,,False,server min inter-arrival,True,,True,False,False,False,0.07342143906020558,True,,,,49,True,1.4467499580059666
+qwen05,zero_shot,b525457ec66a13b9,dos_wisenet-camera_554,True,True,False,True,True,,True,,False,server min inter-arrival,False,server min inter-arrival,True,,True,False,False,False,0.07142857142857142,True,,,,63,True,1.8468984159990216
+qwen05,zero_shot,eecc266306549a70,ddos_wisenet-camera_80,True,True,False,True,False,server mean packet size,True,,,,,,True,,True,False,False,False,0.07503234152652005,True,,,,65,True,1.869144291995326
+qwen05,zero_shot,69653aa35a48deac,dos_wisenet-camera_554,True,True,False,True,True,,True,,,,True,,True,,True,True,False,True,0.05502392344497608,True,,,,65,True,1.93237570898782
+qwen05,zero_shot,6bd41264607a90ba,ddos_wisenet-camera_80,True,True,False,True,True,,True,,,,,,True,,True,True,False,True,0.07397959183673469,True,,,,67,True,2.1999849590065423
+qwen05,zero_shot,c059293f4df6b774,dos_wisenet-camera_554,True,True,False,True,True,,True,,,,False,server min inter-arrival,True,,True,False,False,False,0.07342143906020558,True,,,,49,True,1.449332374992082
+qwen05,zero_shot,2cf40cca8358bfd9,dos_wisenet-camera_554,True,True,False,True,True,,True,,,,,,True,,True,False,False,False,0.08411214953271028,True,,,,43,True,1.4776910420041531
+llama1b,zero_shot,469f6439a49f3fd9,ddos_wisenet-camera_80,False,True,False,True,True,,True,,True,,True,,True,,False,,False,False,0.02459791863765374,True,,,,123,False,3.1541224579996197
+llama1b,zero_shot,5c318988490d1158,dos_wisenet-camera_554,False,True,False,True,,,False,77.89,,,,,True,,False,,False,False,0.026262626262626262,True,,,,116,False,3.215594041001168
+llama1b,zero_shot,1777cce92165326e,dos_wisenet-camera_80,False,True,False,True,False,client max packet size,True,,,,,,True,,False,,False,False,0.012328117591275486,True,,,,314,False,6.850876708995202
+llama1b,zero_shot,4daa82a99ec18615,ddos_wisenet-camera_80,False,True,False,True,False,client max packet size,True,,,,True,,True,,False,,False,False,0.027339642481598318,True,,,,109,False,3.158934999999474
+llama1b,zero_shot,a35c7fb55c6742ba,ddos_wisenet-camera_80,False,True,False,True,True,,True,,,,,,True,,False,,False,False,0.02672147995889003,True,,,,102,False,2.833509165997384
+llama1b,zero_shot,0ea7bad5dbb85bb1,ddos_wisenet-camera_80,False,True,False,True,False,"server min inter-arrival,server mean packet size",True,,,,,,True,,False,,False,False,0.023701002734731084,True,,,,135,False,3.438222999990103
+llama1b,zero_shot,e340507fa26fae9e,dos_wisenet-camera_554,False,True,False,True,,,True,,False,server mean packet size,,,True,,False,,False,False,0.026804123711340205,True,,,,113,False,2.9129635830031475
+llama1b,zero_shot,d247007d2316ce78,ddos_wisenet-camera_80,False,True,False,True,True,,True,,,,True,,True,,False,,False,False,0.03125,True,,,,94,False,2.685524040993186
+llama1b,zero_shot,18c2931c2ae44927,ddos_wisenet-camera_80,False,True,False,True,True,,True,,,,,,True,,False,,False,False,0.027867095391211148,True,,,,99,False,2.8673501249868423
+llama1b,zero_shot,6864815a323f55cd,dos_wisenet-camera_80,False,True,False,True,True,,True,,,,,,True,,False,,False,False,0.024163568773234202,True,,,,138,False,3.598988375000772
+llama1b,zero_shot,363bac860de089bc,ddos_wisenet-camera_80,False,True,False,True,False,"server min inter-arrival,server mean packet size",True,,,,,,True,,False,,False,False,0.023701002734731084,True,,,,135,False,3.44069054198917
+llama1b,zero_shot,79fee9f805fddef3,ddos_wisenet-camera_80,False,True,False,True,False,"server min inter-arrival,server mean packet size",True,,,,,,True,,False,,False,False,0.023701002734731084,True,,,,135,False,3.4437829579983372
+llama1b,zero_shot,7d8512373bb2b9db,ddos_wisenet-camera_80,False,True,False,True,False,"server min inter-arrival,server mean packet size",True,,,,,,True,,False,,False,False,0.023701002734731084,True,,,,135,False,3.446192957999301
+llama1b,zero_shot,16c6c7918409991c,dos_wisenet-camera_80,False,True,False,True,False,server stddev packet size,True,,,,True,,True,,False,,False,False,0.020684168655529037,True,,,,170,False,4.622757541001192
+llama1b,zero_shot,b525457ec66a13b9,dos_wisenet-camera_554,False,True,False,True,True,,True,,,,True,,True,,False,,False,False,0.024667931688804556,True,,,,127,False,3.217092708000564
+llama1b,zero_shot,eecc266306549a70,ddos_wisenet-camera_80,False,True,False,True,False,"server min inter-arrival,server mean packet size",True,,,,,,True,,False,,False,False,0.023701002734731084,True,,,,135,False,3.4496840829961
+llama1b,zero_shot,69653aa35a48deac,dos_wisenet-camera_554,True,True,True,True,,,True,,,,True,,True,,True,True,False,False,0.030373831775700934,True,,,,94,False,2.8383688750036526
+llama1b,zero_shot,6bd41264607a90ba,ddos_wisenet-camera_80,False,True,False,True,True,,True,,,,,,True,,False,,False,False,0.027867095391211148,True,,,,99,False,2.8707313330087345
+llama1b,zero_shot,c059293f4df6b774,dos_wisenet-camera_554,False,False,False,True,False,server stddev packet size,True,,,,True,,True,,False,,False,False,0.015214384508990318,True,,,,189,False,4.637352124991594
+llama1b,zero_shot,2cf40cca8358bfd9,dos_wisenet-camera_554,False,True,False,True,False,"client max packet size,server stddev packet size",True,,False,server stddev packet size,,,True,,False,,False,False,0.023593466424682397,True,,,,131,False,3.3263207499985583
+qwen15,zero_shot,469f6439a49f3fd9,ddos_wisenet-camera_80,False,False,False,True,True,,True,,False,server stddev packet size,True,,True,,False,,False,False,0.02459791863765374,True,,,,97,False,3.628104749994236
+qwen15,zero_shot,5c318988490d1158,dos_wisenet-camera_554,False,False,False,True,,,True,,,,,,True,,False,,False,False,0.03209876543209877,True,,,,64,True,2.436255959008122
+qwen15,zero_shot,1777cce92165326e,dos_wisenet-camera_80,False,False,False,True,True,,True,,False,server stddev packet size,,,True,,False,,False,False,0.02190395956192081,True,,,,111,False,3.419465458006016
+qwen15,zero_shot,4daa82a99ec18615,ddos_wisenet-camera_80,False,False,False,False,False,total min packet size,True,,,,True,,True,,False,,False,False,0.029612756264236904,True,,,,71,True,2.6661741669959156
+qwen15,zero_shot,a35c7fb55c6742ba,ddos_wisenet-camera_80,False,False,False,True,,,True,,,,,,False,consume bandwidth,False,,False,False,0.028921023359288096,True,,,,68,True,2.464007834001677
+qwen15,zero_shot,0ea7bad5dbb85bb1,ddos_wisenet-camera_80,False,False,False,False,,,True,,,,,,True,,False,,False,False,0.02763018065887354,True,,,,78,True,2.677573166991351
+qwen15,zero_shot,e340507fa26fae9e,dos_wisenet-camera_554,False,False,False,True,True,,True,,,,,,True,,False,,False,False,0.02145214521452145,True,,,,114,False,3.5575341249932535
+qwen15,zero_shot,d247007d2316ce78,ddos_wisenet-camera_80,False,False,False,False,,,True,,,,True,,True,,False,,False,False,0.023985239852398525,True,,,,99,False,3.46680845899391
+qwen15,zero_shot,18c2931c2ae44927,ddos_wisenet-camera_80,False,False,False,False,,,True,,,,,,False,consume bandwidth,False,,False,False,0.0259222333000997,True,,,,86,False,3.087631834001513
+qwen15,zero_shot,6864815a323f55cd,dos_wisenet-camera_80,False,False,False,False,,,True,,,,,,True,,False,,False,False,0.024667931688804556,True,,,,98,False,3.219940708004287
+qwen15,zero_shot,363bac860de089bc,ddos_wisenet-camera_80,False,False,False,False,,,True,,,,,,True,,False,,False,False,0.02763018065887354,True,,,,78,True,2.702289209002629
+qwen15,zero_shot,79fee9f805fddef3,ddos_wisenet-camera_80,False,False,False,False,,,True,,,,,,True,,False,,False,False,0.02763018065887354,True,,,,78,True,2.689605624997057
+qwen15,zero_shot,7d8512373bb2b9db,ddos_wisenet-camera_80,False,False,False,False,,,True,,,,,,True,,False,,False,False,0.02763018065887354,True,,,,78,True,2.6749052080122055
+qwen15,zero_shot,16c6c7918409991c,dos_wisenet-camera_80,False,False,False,True,,,True,,,,True,,True,,False,,False,False,0.027689030883919063,True,,,,76,True,2.759939834009856
+qwen15,zero_shot,b525457ec66a13b9,dos_wisenet-camera_554,False,False,False,True,True,,True,,,,True,,True,,False,,False,False,0.027926960257787327,True,,,,82,False,2.9010872499929974
+qwen15,zero_shot,eecc266306549a70,ddos_wisenet-camera_80,False,False,False,False,,,True,,,,,,True,,False,,False,False,0.02763018065887354,True,,,,78,True,2.680262000008952
+qwen15,zero_shot,69653aa35a48deac,dos_wisenet-camera_554,False,False,False,False,,,True,,,,True,,True,,False,,False,False,0.02736842105263158,True,,,,75,True,2.9516488340013893
+qwen15,zero_shot,6bd41264607a90ba,ddos_wisenet-camera_80,False,False,False,False,,,True,,,,,,False,consume bandwidth,False,,False,False,0.0259222333000997,True,,,,86,False,3.090866875005304
+qwen15,zero_shot,c059293f4df6b774,dos_wisenet-camera_554,False,False,False,False,True,,True,,,,True,,True,,False,,False,False,0.028761061946902654,True,,,,68,True,2.501536499999929
+qwen15,zero_shot,2cf40cca8358bfd9,dos_wisenet-camera_554,False,False,False,True,True,,True,,False,server stddev packet size,,,True,,False,,False,False,0.02190395956192081,True,,,,111,False,3.4143737080012215

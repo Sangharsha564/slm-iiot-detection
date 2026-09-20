@@ -1,0 +1,36 @@
+# Candidate encoders for Stage 1.
+# param_count is filled in at runtime and written to each run's profile.json.
+
+models:
+  bert-tiny:
+    repo: prajjwal1/bert-tiny
+    note: 2 layers, hidden 128. Smallest candidate.
+
+  bert-mini:
+    repo: prajjwal1/bert-mini
+    note: 4 layers, hidden 256.
+
+  electra-small:
+    repo: google/electra-small-discriminator
+    note: 12 layers, hidden 256. Established baseline in earlier work.
+
+  tinybert-4l:
+    repo: huawei-noah/TinyBERT_General_4L_312D
+    note: 4 layers, hidden 312. Distilled from BERT-base.
+
+  minilm-l6:
+    repo: nreimers/MiniLM-L6-H384-uncased
+    note: 6 layers, hidden 384. Self-attention distillation.
+
+# Shared training configuration. Per-model overrides go under the model key.
+defaults:
+  max_length: 192          # observed max 121 tokens; no truncation
+  batch_size: 32
+  eval_batch_size: 64
+  learning_rate: 3.0e-5
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  epochs: 10
+  early_stopping_patience: 4
+  early_stopping_metric: val_mcc
+  gradient_clip: 1.0

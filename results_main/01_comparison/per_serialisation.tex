@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\caption{Test MCC on the held-out device, by model and input serialisation. Mean $\pm$ standard deviation over three seeds.}
+\label{tab:per-serialisation}
+\small
+\begin{tabular}{lrr}
+\toprule
+Model & Readable & Raw names \\
+\midrule
+bert-tiny & 0.8948 $\pm$ 0.0219 & 0.8916 $\pm$ 0.0078 \\
+bert-mini & 0.9122 $\pm$ 0.0212 & 0.9341 $\pm$ 0.0064 \\
+electra-small & 0.9117 $\pm$ 0.0311 & 0.9033 $\pm$ 0.0074 \\
+tinybert-4l & 0.9154 $\pm$ 0.0297 & 0.9259 $\pm$ 0.0638 \\
+minilm-l6 & 0.9083 $\pm$ 0.0264 & 0.8860 $\pm$ 0.0061 \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\footnotesize Both arms use the same training configuration (192 tokens, patience 4).
+\end{table}

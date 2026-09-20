@@ -1,0 +1,141 @@
+{
+  "run": "/Users/sangharshathapa/Desktop/slm_iiot_final/experiments/stage1_full_13_readable192/bert-mini_s42",
+  "threshold": 0.24,
+  "n_flows": 830,
+  "scope": "detected",
+  "ranking": "abs",
+  "target": 0.95,
+  "floor_N": 3,
+  "rebuild_error": 0.0,
+  "baseline_only_prob": 0.0010456254240125418,
+  "original_mean_prob": 0.9991141557693481,
+  "runtime_s": 19.003317208000226,
+  "table": [
+    {
+      "N": 0,
+      "kept_detected_pct": 0.0,
+      "kept_mean_prob": 0.0010456254240125418,
+      "sufficiency_drop": 0.9980685114860535,
+      "removed_detected_pct": 100.0,
+      "removed_mean_prob": 0.9991141557693481,
+      "comprehensiveness_drop": 0.0
+    },
+    {
+      "N": 1,
+      "kept_detected_pct": 90.8433734939759,
+      "kept_mean_prob": 0.9085640907287598,
+      "sufficiency_drop": 0.09054995328187943,
+      "removed_detected_pct": 0.0,
+      "removed_mean_prob": 0.001127098803408444,
+      "comprehensiveness_drop": 0.9979870319366455
+    },
+    {
+      "N": 2,
+      "kept_detected_pct": 92.40963855421687,
+      "kept_mean_prob": 0.9164614081382751,
+      "sufficiency_drop": 0.08265270292758942,
+      "removed_detected_pct": 0.0,
+      "removed_mean_prob": 0.0011326021049171686,
+      "comprehensiveness_drop": 0.9979814887046814
+    },
+    {
+      "N": 3,
+      "kept_detected_pct": 98.43373493975903,
+      "kept_mean_prob": 0.9740625023841858,
+      "sufficiency_drop": 0.025051647797226906,
+      "removed_detected_pct": 0.0,
+      "removed_mean_prob": 0.001108356169424951,
+      "comprehensiveness_drop": 0.9980056881904602
+    },
+    {
+      "N": 4,
+      "kept_detected_pct": 100.0,
+      "kept_mean_prob": 0.9990319609642029,
+      "sufficiency_drop": 8.222863107221201e-05,
+      "removed_detected_pct": 0.0,
+      "removed_mean_prob": 0.0010703842854127288,
+      "comprehensiveness_drop": 0.9980437755584717
+    },
+    {
+      "N": 5,
+      "kept_detected_pct": 100.0,
+      "kept_mean_prob": 0.9990345239639282,
+      "sufficiency_drop": 7.964394171722233e-05,
+      "removed_detected_pct": 0.0,
+      "removed_mean_prob": 0.0010684009175747633,
+      "comprehensiveness_drop": 0.9980456829071045
+    },
+    {
+      "N": 6,
+      "kept_detected_pct": 100.0,
+      "kept_mean_prob": 0.9990348219871521,
+      "sufficiency_drop": 7.932839798741043e-05,
+      "removed_detected_pct": 0.0,
+      "removed_mean_prob": 0.0010682386346161366,
+      "comprehensiveness_drop": 0.9980459809303284
+    },
+    {
+      "N": 7,
+      "kept_detected_pct": 100.0,
+      "kept_mean_prob": 0.9991059303283691,
+      "sufficiency_drop": 8.20863715489395e-06,
+      "removed_detected_pct": 0.0,
+      "removed_mean_prob": 0.001063950010575354,
+      "comprehensiveness_drop": 0.9980502128601074
+    },
+    {
+      "N": 8,
+      "kept_detected_pct": 100.0,
+      "kept_mean_prob": 0.9991075396537781,
+      "sufficiency_drop": 6.600604137929622e-06,
+      "removed_detected_pct": 0.0,
+      "removed_mean_prob": 0.001060547772794962,
+      "comprehensiveness_drop": 0.9980536699295044
+    },
+    {
+      "N": 9,
+      "kept_detected_pct": 100.0,
+      "kept_mean_prob": 0.9991096258163452,
+      "sufficiency_drop": 4.4088765207561664e-06,
+      "removed_detected_pct": 0.0,
+      "removed_mean_prob": 0.0010561634553596377,
+      "comprehensiveness_drop": 0.9980579614639282
+    },
+    {
+      "N": 10,
+      "kept_detected_pct": 100.0,
+      "kept_mean_prob": 0.9991152286529541,
+      "sufficiency_drop": -1.0876052556341165e-06,
+      "removed_detected_pct": 0.0,
+      "removed_mean_prob": 0.0010534956818446517,
+      "comprehensiveness_drop": 0.9980605244636536
+    },
+    {
+      "N": 11,
+      "kept_detected_pct": 100.0,
+      "kept_mean_prob": 0.9991166591644287,
+      "sufficiency_drop": -2.5392296265636105e-06,
+      "removed_detected_pct": 0.0,
+      "removed_mean_prob": 0.001049666665494442,
+      "comprehensiveness_drop": 0.998064398765564
+    },
+    {
+      "N": 12,
+      "kept_detected_pct": 100.0,
+      "kept_mean_prob": 0.9991146326065063,
+      "sufficiency_drop": -4.910560846838052e-07,
+      "removed_detected_pct": 0.0,
+      "removed_mean_prob": 0.0010457925964146852,
+      "comprehensiveness_drop": 0.9980683326721191
+    },
+    {
+      "N": 13,
+      "kept_detected_pct": 100.0,
+      "kept_mean_prob": 0.9991141557693481,
+      "sufficiency_drop": 0.0,
+      "removed_detected_pct": 0.0,
+      "removed_mean_prob": 0.0010456254240125418,
+      "comprehensiveness_drop": 0.9980685114860535
+    }
+  ]
+}

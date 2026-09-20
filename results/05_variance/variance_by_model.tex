@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{Seed sensitivity by architecture, across both serialisations (six runs each). The range ratio is the test MCC range divided by the validation MCC range.}
+\label{tab:variance-by-model}
+\small
+\begin{tabular}{lrrrrrr}
+\toprule
+Model & Runs & Val.\textbackslash \space SD & Test SD & Test min & Test max & Range ratio \\
+\midrule
+bert-tiny & 6 & 0.0023 & 0.0148 & 0.8812 & 0.9201 & 8.3000 \\
+bert-mini & 6 & 0.0005 & 0.0184 & 0.8986 & 0.9415 & 32.1000 \\
+electra-small & 6 & 0.0003 & 0.0207 & 0.8931 & 0.9476 & 81.8000 \\
+tinybert-4l & 6 & 0.0020 & 0.0449 & 0.8840 & 0.9993 & 24.7000 \\
+minilm-l6 & 6 & 0.0021 & 0.0210 & 0.8824 & 0.9387 & 14.0000 \\
+\bottomrule
+\end{tabular}
+\end{table}

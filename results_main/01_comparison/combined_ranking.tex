@@ -1,0 +1,19 @@
+\begin{table}[htbp]
+\centering
+\caption{Model comparison pooled over both serialisations (six runs per model). Missed is the mean count of undetected attack flows out of 923.}
+\label{tab:combined-ranking}
+\small
+\begin{tabular}{lrrrrrr}
+\toprule
+Model & Params & MCC & $F_1$ & Precision & Recall & Missed \\
+\midrule
+bert-tiny & 4.4M & 0.8932 $\pm$ 0.0148 & 0.9078 & 0.9993 & 0.8319 $\pm$ 0.0226 & 155 \\
+bert-mini & 11.2M & 0.9232 $\pm$ 0.0184 & 0.9349 & 1.0000 & 0.8781 $\pm$ 0.0289 & 112 \\
+electra-small & 13.5M & 0.9075 $\pm$ 0.0207 & 0.9207 & 1.0000 & 0.8536 $\pm$ 0.0325 & 135 \\
+tinybert-4l & 14.4M & 0.9207 $\pm$ 0.0449 & 0.9318 & 1.0000 & 0.8745 $\pm$ 0.0708 & 116 \\
+minilm-l6 & 22.7M & 0.8971 $\pm$ 0.0210 & 0.9114 & 0.9991 & 0.8382 $\pm$ 0.0322 & 149 \\
+\bottomrule
+\end{tabular}
+\vspace{2pt}
+\footnotesize Precision is 1.0000 for three models; the remaining two produce one or two false positives out of 3\,720 benign flows.
+\end{table}

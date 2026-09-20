@@ -1,0 +1,5 @@
+scenario,n,n_attack,recall
+benign_baseline,3603.0,0.0,
+ddos_wisenet-camera_80,370.0,330.0,0.6787878787878788
+dos_wisenet-camera_554,343.0,300.0,0.9966666666666667
+dos_wisenet-camera_80,327.0,293.0,0.7918088737201365

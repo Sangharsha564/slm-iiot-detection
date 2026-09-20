@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{Accuracy per unit of resource. Higher is better in every column.}
+\label{tab:efficiency}
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+Model & MCC & MCC / Mparam & MCC / MB disk & MCC / MB RSS & MCC / ms \\
+\midrule
+bert-tiny & 0.8916 & 0.2033 & 0.0482 & 0.0385 & 0.9487 \\
+bert-mini & 0.9341 & 0.0836 & 0.0205 & 0.0270 & 0.2642 \\
+electra-small & 0.9033 & 0.0667 & 0.0164 & 0.0125 & 0.0847 \\
+tinybert-4l & 0.9259 & 0.0645 & 0.0159 & 0.0190 & 0.1616 \\
+minilm-l6 & 0.8860 & 0.0390 & 0.0096 & 0.0119 & 0.1031 \\
+\bottomrule
+\end{tabular}
+\end{table}

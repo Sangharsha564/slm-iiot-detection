@@ -1,0 +1,23 @@
+name: slm_stage1
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - torch
+      - "transformers>=4.44,<5"
+      - datasets
+      - accelerate
+      - scikit-learn
+      - pandas
+      - numpy
+      - scipy
+      - matplotlib
+      - psutil
+      - pyyaml
+      - tabulate
+      - paho-mqtt
+      - pymupdf
+      - mlflow
+      - nfstream

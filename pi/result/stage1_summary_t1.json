@@ -1,0 +1,76 @@
+{
+  "tag": "t1",
+  "host": {
+    "node": "plc",
+    "machine": "aarch64",
+    "system": "Linux",
+    "python": "3.11.2",
+    "torch": "2.13.0+cpu",
+    "threads": 1
+  },
+  "model": {
+    "checkpoint": "/home/sangharsha/stage1",
+    "parameters": 11171074,
+    "weights_mb": 44.7,
+    "dtype_requested": "float32",
+    "dtype_loaded": "float32",
+    "device": "cpu",
+    "max_length": 128,
+    "load_seconds": 6.98
+  },
+  "threshold": 0.24,
+  "latency": {
+    "includes_tokenisation": true,
+    "batched_ms_per_flow": 129.361,
+    "batched_flows_per_second": 7.7,
+    "batch_size": 32,
+    "single_ms_median": 186.099,
+    "single_ms_p95": 187.933,
+    "single_ms_p99": 203.024,
+    "single_ms_max": 220.121,
+    "single_n": 200
+  },
+  "peak_rss_mb": 500.6,
+  "metrics_by_split": {
+    "test_text": {
+      "n": 4643,
+      "n_attack": 923,
+      "n_benign": 3720,
+      "tp": 830,
+      "fp": 0,
+      "fn": 93,
+      "tn": 3720,
+      "accuracy": 0.9799698470816283,
+      "balanced_accuracy": 0.9496208017334777,
+      "precision": 1.0,
+      "recall": 0.8992416034669556,
+      "specificity": 1.0,
+      "f1": 0.9469480889903024,
+      "mcc": 0.9366476826593744,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.10075839653304441,
+      "roc_auc": 0.9998770954927247,
+      "pr_auc": 0.9995134924006002
+    }
+  },
+  "metrics_combined": {
+    "n": 4643,
+    "n_attack": 923,
+    "n_benign": 3720,
+    "tp": 830,
+    "fp": 0,
+    "fn": 93,
+    "tn": 3720,
+    "accuracy": 0.9799698470816283,
+    "balanced_accuracy": 0.9496208017334777,
+    "precision": 1.0,
+    "recall": 0.8992416034669556,
+    "specificity": 1.0,
+    "f1": 0.9469480889903024,
+    "mcc": 0.9366476826593744,
+    "false_positive_rate": 0.0,
+    "false_negative_rate": 0.10075839653304441,
+    "roc_auc": 0.9998770954927247,
+    "pr_auc": 0.9995134924006002
+  }
+}

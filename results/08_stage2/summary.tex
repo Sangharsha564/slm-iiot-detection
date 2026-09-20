@@ -1,0 +1,22 @@
+\begin{table}[htbp]
+\centering
+\caption{Explanation quality by model and prompting condition. Each score is the percentage of applicable checks passed. \emph{Copying} is the median similarity to the worked example with numbers removed; 1.00 means its wording was reused verbatim.}
+\label{tab:stage2-summary}
+\begin{tabular}{lllrrrr}
+\toprule
+Model & Size & Condition & Form & Faithful & Domain & Copying \\
+\midrule
+qwen05 & 0.5B & zero-shot & 67\% & 78\% & 40\% & 0.07 \\
+qwen05 & 0.5B & few-shot & 80\% & 95\% & 64\% & 0.72 \\
+qwen05 & 0.5B & RAG & 45\% & 75\% & 60\% & 0.10 \\
+\midrule
+llama1b & 1B & zero-shot & 3\% & 81\% & 51\% & 0.02 \\
+llama1b & 1B & few-shot & 45\% & 98\% & 66\% & 0.70 \\
+llama1b & 1B & RAG & 42\% & 83\% & 89\% & 0.33 \\
+\midrule
+qwen15 & 1.5B & zero-shot & 18\% & 72\% & 42\% & 0.03 \\
+qwen15 & 1.5B & few-shot & 53\% & 93\% & 62\% & 0.06 \\
+qwen15 & 1.5B & RAG & 50\% & 84\% & 95\% & 0.07 \\
+\bottomrule
+\end{tabular}
+\end{table}

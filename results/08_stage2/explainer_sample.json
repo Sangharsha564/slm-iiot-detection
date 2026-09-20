@@ -1,0 +1,56 @@
+{
+  "n_samples": 20,
+  "seed": 42,
+  "pool": "detected flows only",
+  "pool_size": 830,
+  "method": "farthest-point sampling over prompt-relevant features, seeded with one flow per scenario",
+  "coverage_selected": {
+    "scenarios": 3,
+    "rank_patterns": 8,
+    "full_prompt_patterns": 12,
+    "dominant_values": 3,
+    "prob_spread": 0.0006232261657713734
+  },
+  "coverage_random_mean": {
+    "scenarios": 2.99,
+    "rank_patterns": 5.215,
+    "full_prompt_patterns": 5.715,
+    "dominant_values": 2.14,
+    "prob_spread": 0.0004798743128776495
+  },
+  "coverage_random_best": {
+    "scenarios": 3.0,
+    "rank_patterns": 8.0,
+    "full_prompt_patterns": 10.0,
+    "dominant_values": 3.0,
+    "prob_spread": 0.0006235837936401367
+  },
+  "random_trials": 200,
+  "flow_keys": [
+    "469f6439a49f3fd9",
+    "5c318988490d1158",
+    "1777cce92165326e",
+    "4daa82a99ec18615",
+    "a35c7fb55c6742ba",
+    "0ea7bad5dbb85bb1",
+    "e340507fa26fae9e",
+    "d247007d2316ce78",
+    "18c2931c2ae44927",
+    "6864815a323f55cd",
+    "363bac860de089bc",
+    "79fee9f805fddef3",
+    "7d8512373bb2b9db",
+    "16c6c7918409991c",
+    "b525457ec66a13b9",
+    "eecc266306549a70",
+    "69653aa35a48deac",
+    "6bd41264607a90ba",
+    "c059293f4df6b774",
+    "2cf40cca8358bfd9"
+  ],
+  "scenario_counts": {
+    "ddos_wisenet-camera_80": 11,
+    "dos_wisenet-camera_554": 6,
+    "dos_wisenet-camera_80": 3
+  }
+}

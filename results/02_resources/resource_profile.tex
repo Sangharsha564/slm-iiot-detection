@@ -1,0 +1,20 @@
+\begin{table}[htbp]
+\centering
+\caption{Resource profile measured on CPU (development hardware). Latency is per flow at batch size~1, the condition under which an inline detector operates.}
+\label{tab:resource}
+\small
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Model & Params & Disk (MB) & RSS (MB) & Cold start (s) & p50 (ms) & p95 (ms) & Flows/s & MCC \\
+\midrule
+bert-tiny & 4.4M & 18.50 & 23 & 0.06 & 0.94 & 1.11 & 1045 & 0.89 \\
+bert-mini & 11.2M & 45.60 & 35 & 0.07 & 3.54 & 3.77 & 281 & 0.93 \\
+electra-small & 13.5M & 55.20 & 72 & 0.11 & 10.66 & 11.30 & 93 & 0.90 \\
+tinybert-4l & 14.4M & 58.40 & 49 & 0.08 & 5.73 & 5.99 & 174 & 0.93 \\
+minilm-l6 & 22.7M & 91.80 & 74 & 0.06 & 8.59 & 9.47 & 114 & 0.89 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+\footnotesize Thread count selected per model as the fastest of 1 and 4; single-threaded execution was fastest for four of five models at batch size~1.
+\end{table}

@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{Validation and test MCC across all 42 runs. Test performance varies 22 times more widely than validation performance.}
+\label{tab:val-vs-test}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+Partition & Min & Max & Range & SD \\
+\midrule
+Validation & 0.9933 & 1.0000 & 0.0067 & 0.0020 \\
+Test (held-out device) & 0.8544 & 0.9993 & 0.1449 & 0.0268 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+\footnotesize Runs achieving validation MCC $\geq 0.999$ produced test MCC between 0.8931 and 0.9993.
+\end{table}

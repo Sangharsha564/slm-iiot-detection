@@ -1,0 +1,79 @@
+==========================================================================
+PREPROCESSING AND FEATURE SELECTION
+==========================================================================
+seed=42  target features=None  corr threshold=0.75
+
+0. TRAIN / VALIDATION SPLIT
+   train  attack=  2826  benign= 10989  ratio=1:3.89
+   val    attack=   942  benign=  3664  ratio=1:3.89
+   test   attack=   923  benign=  3720  ratio=1:4.03
+   benign window split: NOT AVAILABLE ('chunk' column absent)
+   baseline benign was split randomly - see warning above
+
+starting features: 48
+
+1. NEAR-CONSTANT REMOVAL
+   dropped bidirectional_cwr_packets        99.2% one value
+   dropped bidirectional_ece_packets        99.2% one value
+   dropped src2dst_cwr_packets              99.2% one value
+   dropped src2dst_ece_packets              99.2% one value
+   dropped dst2src_cwr_packets              100.0% one value
+   dropped dst2src_ece_packets              99.4% one value
+   remaining: 42
+
+2. CORRELATION CLUSTERING  (Spearman, rho >= 0.75)
+   cluster  1  keep bidirectional_rst_packets  (mi=0.0050)
+              drop src2dst_rst_packets
+   cluster  2  singleton: dst2src_rst_packets
+   cluster  3  singleton: dst2src_min_piat_ms
+   cluster  4  singleton: dst2src_psh_packets
+   cluster  5  keep src2dst_max_piat_ms  (mi=0.4938)
+              drop bidirectional_max_piat_ms, dst2src_max_piat_ms, src2dst_mean_piat_ms, bidirectional_mean_piat_ms, bidirectional_stddev_piat_ms, src2dst_stddev_piat_ms, dst2src_mean_piat_ms
+   cluster  6  singleton: dst2src_stddev_piat_ms
+   cluster  7  keep bidirectional_min_ps  (mi=0.2070)
+              drop src2dst_min_ps
+   cluster  8  singleton: dst2src_stddev_ps
+   cluster  9  keep src2dst_max_ps  (mi=0.5031)
+              drop bidirectional_max_ps, src2dst_stddev_ps, bidirectional_stddev_ps, src2dst_mean_ps
+   cluster 10  keep dst2src_mean_ps  (mi=0.5022)
+              drop dst2src_max_ps, bidirectional_mean_ps, dst2src_min_ps
+   cluster 11  keep dst2src_bytes  (mi=0.4991)
+              drop bidirectional_bytes, src2dst_bytes, bidirectional_duration_ms, src2dst_duration_ms, dst2src_duration_ms, bidirectional_psh_packets, bidirectional_ack_packets, bidirectional_packets, src2dst_psh_packets, src2dst_ack_packets, dst2src_ack_packets, dst2src_packets, src2dst_packets
+   cluster 12  singleton: bidirectional_min_piat_ms
+   cluster 13  singleton: src2dst_min_piat_ms
+   remaining: 13
+
+3. MUTUAL INFORMATION RANKING  (all survivors kept)
+  *  1. src2dst_max_ps                   mi=0.5031  [packet size]
+  *  2. dst2src_mean_ps                  mi=0.5022  [packet size]
+  *  3. dst2src_bytes                    mi=0.4991  [server response]
+  *  4. dst2src_stddev_ps                mi=0.4986  [packet size]
+  *  5. src2dst_max_piat_ms              mi=0.4938  [inter-arrival]
+  *  6. dst2src_stddev_piat_ms           mi=0.4731  [inter-arrival]
+  *  7. dst2src_psh_packets              mi=0.3856  [server response]
+  *  8. src2dst_min_piat_ms              mi=0.2869  [inter-arrival]
+  *  9. bidirectional_min_ps             mi=0.2070  [packet size]
+  * 10. dst2src_min_piat_ms              mi=0.0765  [inter-arrival]
+  * 11. bidirectional_min_piat_ms        mi=0.0572  [inter-arrival]
+  * 12. dst2src_rst_packets              mi=0.0270  [server response]
+  * 13. bidirectional_rst_packets        mi=0.0050  [other]
+   final feature count: 13
+
+   SELECTED FEATURES BY MECHANISM
+     inter-arrival    src2dst_max_piat_ms, dst2src_stddev_piat_ms, src2dst_min_piat_ms, dst2src_min_piat_ms, bidirectional_min_piat_ms
+     other            bidirectional_rst_packets
+     packet size      src2dst_max_ps, dst2src_mean_ps, dst2src_stddev_ps, bidirectional_min_ps
+     server response  dst2src_bytes, dst2src_psh_packets, dst2src_rst_packets
+
+4. SERIALISATION
+   train_text.csv  13815 rows
+   val_text.csv  4606 rows
+   test_text.csv  4643 rows
+
+   example attack row:
+     client max packet size is 234 | server mean packet size is 67 | server bytes is 536 | server stddev packet size is 2.83 | client max inter-arrival is 15.0s | server stddev inter-arrival is 8.0s | server psh packets is 0 | client min inter-arrival is 0.0s | total min packet size is 66 | server min inter-arrival is 0.0s | total min inter-arrival is 0.0s | server rst packets is 0 | total rst packets is 0
+   example benign row:
+     client max packet size is 70 | server mean packet size is 60 | server bytes is 480 | server stddev packet size is 0 | client max inter-arrival is 10.3s | server stddev inter-arrival is 4.8s | server psh packets is 1 | client min inter-arrival is 0.2s | total min packet size is 60 | server min inter-arrival is 0.0s | total min inter-arrival is 0.0s | server rst packets is 0 | total rst packets is 0
+
+   whitespace tokens: mean=80  max=80
+   (check against the encoder tokenizer before training)

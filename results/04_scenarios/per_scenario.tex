@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{Per-scenario recall on the held-out device. The RTSP port (554) was absent from training, yet is detected more reliably than the HTTP ports present in training.}
+\label{tab:per-scenario}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Model & ddos wisenet 80 & dos wisenet 554 & dos wisenet 80 \\
+\midrule
+bert-tiny & 0.7141 & 0.9967 & 0.7873 \\
+bert-mini & 0.8182 & 0.9978 & 0.8771 \\
+electra-small & 0.7455 & 1.0000 & 0.8043 \\
+tinybert-4l & 0.8040 & 0.9978 & 0.8544 \\
+minilm-l6 & 0.6980 & 0.9967 & 0.7816 \\
+\bottomrule
+\end{tabular}
+\end{table}
