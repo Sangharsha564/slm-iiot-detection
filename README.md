@@ -2,7 +2,7 @@
 
 A two-stage system for detecting Slowloris slow-rate DoS attacks in Industrial IoT networks and explaining each alert in plain language.
 
-- **Stage 1 – Detection.** Network flows are written as short text and classified by a compact language model (BERT-mini, 11M parameters) that runs on a Raspberry Pi.
+- **Stage 1 – Detection.** Network flows are written as short text and classified by a compact language model (BERT-mini, 11M parameters) that runs on a PLC.
 - **Stage 2 – Explanation.** For each alert, Integrated Gradients finds the features that drove the decision, and a small language model (Qwen2.5-1.5B) turns them into an explanation and mitigation advice, optionally with retrieved security knowledge (RAG).
 
 ## Key results (BERT-mini, unseen test device)
@@ -12,7 +12,7 @@ A two-stage system for detecting Slowloris slow-rate DoS attacks in Industrial I
 | MCC | 0.937 |
 | Precision | 1.000 |
 | Recall | 0.899 |
-| Latency on Raspberry Pi 4 (1 flow) | 72.5 ms |
+| Latency on PLC (1 flow) | 72.5 ms |
 
 The model is trained on one device (edge1) and tested on a device it has never seen (wisenet-camera).
 
@@ -74,7 +74,7 @@ python src/stage2_eval.py --condition rag
 python src/stage2_report.py
 ```
 
-**5. Live pipeline (Raspberry Pi + laptop)**
+**5. Live pipeline (PLC + laptop)**
 
 ```
 # laptop
@@ -90,6 +90,6 @@ python3 pi/edge_detect_final.py --ckpt pi --csv demo_flows.csv
 
 ## Limitations
 
-- Benign traffic comes from a single capture, so capture-specific patterns may remain.
+- Benign traffic comes from a single capture, so capture specific patterns may remain.
 - The validation split for benign traffic is random rather than by time window.
-- The Pi–laptop link uses MQTT without authentication or encryption. It's a demonstration setup, not a production deployment.
+- The PLC–laptop link uses MQTT without authentication or encryption. It's a demonstration setup, not a production deployment.
